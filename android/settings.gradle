@@ -1,0 +1,3 @@
+rootProject.name = 'CnodejsClient'
+
+include ':app'
