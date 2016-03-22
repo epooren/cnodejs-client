@@ -24,10 +24,37 @@ module.exports = fromJS({
 
 
 
-  // topics
   // 首页topics列表
+  // tab作为key
+  topics: {
+
+  },
   // 用户发布的topics
+  // username作为key
+  userTopics: {
+
+  },
   // 用户收藏的topics
+  // username作为key
+  favTopics: {
+
+  },
   // 用户参与的topics
-  topics: undefined
+  // username作为key
+  replyTopics: {
+
+  },
+
+  // topic详情
+  // id为key，对应一个value
+  topic: {
+
+  },
+
+  // 用户详情
+  // username作为key
+  user: {
+
+  }
+
 });
