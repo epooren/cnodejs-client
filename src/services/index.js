@@ -187,3 +187,19 @@ function markMsg(accesstoken) {
 
   return post(url, body);
 }
+
+module.exports = {
+  getTopics,
+  getTopic,
+  createTopic,
+  addToFavTopics,
+  removeFromFavTopics,
+  getFavTopics,
+  commentTopic,
+  likeComment,
+  getUser,
+  verify,
+  getMsgNum,
+  getMsg,
+  markMsg
+};
