@@ -1,16 +1,18 @@
-const process = require('process');
-const resolve = require('path').resolve;
-const fs = require('fs');
+var cwd = require('process').cwd;
+var resolve = require('path').resolve;
 
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
+var HotModuleReplacementPlugin = webpack.HotModuleReplacementPlugin;
+var NoErrorsPlugin = webpack.NoErrorsPlugin;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 /**
  * 项目根目录
  */
-var ROOT_PATH = process.cwd();
+var ROOT_PATH = cwd();
 
 /**
  * 源码根目录
@@ -18,10 +20,6 @@ var ROOT_PATH = process.cwd();
 var SRC_PATH = resolve(ROOT_PATH, './src');
 
 
-var commonsChunk = new CommonsChunkPlugin({
-    name: 'commons',
-    minChunks: 2
-});
 
 var config = {
     ROOT_PATH: ROOT_PATH,
@@ -31,19 +29,15 @@ var config = {
 
     entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
 
-    // localhost:port/index.html
-    //   * localhost:port/(js|css)/[filename].(js|css)
     output: {
-        filename: 'js/[name].[hash].js',
-        chunkFilename: 'js/fragments/[chunkhash].js',
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[chunkhash].js',
         path: 'dist/',
         publicPath: '/'
     },
 
     resolve: {
-        root: [
-            SRC_PATH
-        ],
+        root: [SRC_PATH],
 
         extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', 'css', '.scss']
     },
@@ -70,10 +64,14 @@ var config = {
     },
 
     plugins: [
-        commonsChunk,
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new CommonsChunkPlugin({
+            name: 'commons',
+            minChunks: 2
+        }),
+        new optimize.OccurenceOrderPlugin(true),
+        new HotModuleReplacementPlugin(),
+        new NoErrorsPlugin(),
+        new ExtractTextPlugin('css/[name].css')
     ]
 };
 
