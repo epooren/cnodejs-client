@@ -9,11 +9,11 @@ var render = require('./render');
 var config = require('./config.js');
 var complier = webpack(config);
 var port = 8080;
-var app = express();
 var page = render({
     css: ['/css/commons.css', '/css/main.css'],
     js: ['/js/commons.js', '/js/main.js']
 });
+var app = express();
 
 app.use(webpackDevMiddleware(complier, {
     publicPath: config.output.publicPath,

@@ -1,7 +1,8 @@
-var ejs = require('ejs');
+var resolve = require('path').resolve;
 var fs = require('fs');
+var ejs = require('ejs');
 var pkg = require('../package.json');
-var template = './template.ejs';
+var template = resolve(__dirname, './template.ejs');
 var defaultOptions = {
   title: pkg.name,
   version: pkg.version,

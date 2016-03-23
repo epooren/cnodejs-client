@@ -1,6 +1,5 @@
 var cwd = require('process').cwd;
 var resolve = require('path').resolve;
-
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
@@ -32,7 +31,7 @@ var config = {
     output: {
         filename: 'js/[name].js',
         chunkFilename: 'js/[chunkhash].js',
-        path: 'dist/',
+        path: resolve(ROOT_PATH, './dist/'),
         publicPath: '/'
     },
 
@@ -68,7 +67,7 @@ var config = {
             name: 'commons',
             minChunks: 2
         }),
-        new optimize.OccurenceOrderPlugin(true),
+        new OccurenceOrderPlugin(true),
         new HotModuleReplacementPlugin(),
         new NoErrorsPlugin(),
         new ExtractTextPlugin('css/[name].css')
