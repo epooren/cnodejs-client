@@ -15,7 +15,7 @@ module.exports = fromJS({
   /* accesstoken */
 
   topics: {
-    /* tab */
+    /* selectedTab */
 
     /**
      * 每个tab对应1个数据对象
@@ -23,8 +23,7 @@ module.exports = fromJS({
      *   data,
      *   page,
      *   count,
-     *   end,
-     *   pending
+     *   status: undefined | pending | done | fail | end
      * }
      */
   },
@@ -35,8 +34,7 @@ module.exports = fromJS({
      *   data,
      *   page,
      *   count,
-     *   end,
-     *   pending
+     *   status
      * }
      */
   },
@@ -47,8 +45,7 @@ module.exports = fromJS({
      *   data,
      *   page,
      *   count,
-     *   end,
-     *   pending
+     *   status
      * }
      */
    },
@@ -59,8 +56,7 @@ module.exports = fromJS({
      *   data,
      *   page,
      *   count,
-     *   end,
-     *   pending
+     *   status
      * }
      */
   },

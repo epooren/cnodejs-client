@@ -29,7 +29,6 @@ function reducer(state = fromJS({}), action) {
     case constants.SET_ACCESSTOKEN:
       return state.set('accesstoken', action.accesstoken);
 
-    case constants.SELECT_TOPICS_TAB:
     case constants.SET_TOPICS:
       return state.update('topics', (state) => core.setTopics(state, action));
 

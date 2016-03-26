@@ -9,8 +9,6 @@ module.exports = keyMirror({
 
   SET_ACCESSTOKEN: null,
 
-  SELECT_TOPICS_TAB:null,
-
   SET_TOPICS: null,
 
   SET_USER_TOPICS: null,
