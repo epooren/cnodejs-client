@@ -36,9 +36,9 @@ module.exports = fromJS({
     /**
      * [username]
      */
-   },
+  },
 
-   favTopic: {
+  favTopic: {
     /**
      * [username]
      */

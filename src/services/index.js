@@ -133,6 +133,7 @@ function removeFromFavTopics(accesstoken, id) {
   return post(url, body);
 }
 
+
 function getFavTopics(username) {
   const url = resolveUrl(API.userfav, {username});
 
