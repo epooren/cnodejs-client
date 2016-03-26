@@ -2,7 +2,6 @@ const {dispatch, getState} = require('../store');
 const {SET_TOPICS, SET_TOPIC} = require('../constants');
 const services = require('../services');
 const notify = require('./notify');
-const loading = require('./loading');
 
 function set(tab, status, page, limit, data) {
   const action = {
@@ -29,62 +28,52 @@ function setDetail(topic) {
 
 
 function get(tab, page = 1, limit = 10) {
-  loading.show();
+  notify.loading();
   set(tab, 'pending');
 
   return services
     .getTopics(tab, page, limit)
     .then((response) => {
+      notify.hide();
       set(tab, 'done', page, limit, response.data);
-
-      return response;
     })
     .catch((err) => {
-      loading.hide();
       notify.error(err.message);
       set(tab, 'fail')
     });
 }
 
 function getDetail(id) {
-  loading.show();
+  notify.loading();
 
   return services
     .getTopic((response) => {
+      notify.hide();
       setDetail(response.data);
-
-      return response;
     })
-    .catch((err) => {
-      loading.hide();
-      notify.error(err.message);
-    });
+    .catch((err) => notify.error(err.message));
 }
 
 
 function createTopic(tab, title, content) {
   let state = getState();
-  const accesstoken = state.get('accesstoken');
+  const token = state.getIn(['master', 'token']);
 
-  if (!accesstoken) {
+  if (!token) {
     notify.warn('未登录或登录已过期');
-    // TODO 返回promise
     return;
   }
 
-  loading.show();
+  notify.loading();
 
   return services
-    .createTopic(accesstoken, tab, title, content)
+    .createTopic(token, tab, title, content)
     .then((response) => {
       loading.hide();
+
       // TODO 插入userTopics
-      return response;
     })
-    .catch((err) => {
-      loading.hide();
-      notify.error(err.message);
-    });
+    .catch((err) => notify.error(err.message));
 }
 
 module.exports = {

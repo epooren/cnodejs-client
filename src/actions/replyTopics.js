@@ -1,5 +1,5 @@
+const {dispatch} = require('../store');
 const notify = require('./notify');
-const loading = require('./loading');
 const {SET_REPLY_TOPICS} = require('../constants');
 const services = require('../services');
 
@@ -16,17 +16,16 @@ function set(username, topics) {
 
 
 function get(username) {
-  loading.show();
+  notify.loading();
 
   return services
     .getUser(username)
     .then((response) => {
-
+      const topics = response.data.recent_replies;
+      notify.hide();
+      set(username, topics);
     })
-    .catch((err) => {
-      loading.hide();
-      //notify.
-    });
+    .catch((err) => notify.error(err.message));
 }
 
 module.exports = {get};
