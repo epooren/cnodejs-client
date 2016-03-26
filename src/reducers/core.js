@@ -19,13 +19,20 @@ function loading(state, action) {
 }
 
 
+function setMaster(state, action) {
+  return state.merge({
+    name: action.name,
+    token: action.token
+  });
+}
+
 
 function setTopics(state, action) {
   /**
    * action
    *   * tab
    *   * page
-   *   * count
+   *   * limit
    *   * status
    *   * data
    */
@@ -41,13 +48,13 @@ function setTopics(state, action) {
     }
 
     // end
-    if (action.data.length < action.count) {
+    if (action.data.length < action.limit) {
       action.status = 'end';
     }
 
     topics = topics.merge({
       page: action.page,
-      count: action.count,
+      limit: action.limit,
       status: action.status
     });
 

@@ -1,3 +1,9 @@
+/**
+ * TIPS
+ *
+ * 客户端或服务器错误，throw Error
+ * 只要服务器返回json都为resolve
+ */
 
 const HOST = 'https://cnodejs.org';
 
@@ -40,7 +46,7 @@ function resolveResponse(http) {
       if (response.ok) {
         return parseBody(response);
       } else {
-        return new Error(response.statusText);
+        throw new Error(response.statusText);
       }
     });
 }

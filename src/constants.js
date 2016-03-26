@@ -7,7 +7,7 @@ module.exports = keyMirror({
 
   SELECT_TAB: null,
 
-  SET_ACCESSTOKEN: null,
+  SET_MASTER: null,
 
   SET_TOPICS: null,
 

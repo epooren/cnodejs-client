@@ -1,33 +1,17 @@
 const {fromJS} = require('immutable');
 const {constants} = require('../constants');
 
-const stateTree = {
-  notification: {},
-  loading: {},
-  selectedTab: '',
-  accesstoken: '',
-  topics: {},
-  userTopics: {},
-  replyTopics: {},
-  favTopics: {},
-  topic: {},
-  user: {},
-  messages: {}
-};
 
 function reducer(state = fromJS({}), action) {
   switch (action.type) {
     case constants.NOTIFY:
       return state.update('notification', (state) => core.notify(state, action));
 
-    case constants.LOADING:
-      return state.update('loading', (state) => core.loading(state, action));
-
     case constants.SELECT_TAB:
       return state.set('selectedTab', action.tab);
 
-    case constants.SET_ACCESSTOKEN:
-      return state.set('accesstoken', action.accesstoken);
+    case constants.SET_MASTER:
+      return state.update('master', (state) => core.setMaster(state, action));
 
     case constants.SET_TOPICS:
       return state.update('topics', (state) => core.setTopics(state, action));

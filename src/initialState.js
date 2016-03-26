@@ -6,13 +6,11 @@ module.exports = fromJS({
     /* show, type, content */
   },
 
-  loading: {
-    /* show, content */
-  },
-
   /* selectedTab */
 
-  /* accesstoken */
+  master: {
+    /* accesstoken, username */
+  },
 
   topics: {
     /* selectedTab */
@@ -22,7 +20,7 @@ module.exports = fromJS({
      * [tabName]: {
      *   data,
      *   page,
-     *   count,
+     *   limit,
      *   status: undefined | pending | done | fail | end
      * }
      */
@@ -30,34 +28,19 @@ module.exports = fromJS({
 
   userTopics: {
     /**
-     * [username]: {
-     *   data,
-     *   page,
-     *   count,
-     *   status
-     * }
+     * [username]
      */
   },
 
   replyTopic: {
     /**
-     * [username]: {
-     *   data,
-     *   page,
-     *   count,
-     *   status
-     * }
+     * [username]
      */
    },
 
    favTopic: {
     /**
-     * [username]: {
-     *   data,
-     *   page,
-     *   count,
-     *   status
-     * }
+     * [username]
      */
   },
 
