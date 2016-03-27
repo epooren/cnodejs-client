@@ -31,6 +31,7 @@ class TabBar extends Component {
 
   select(value) {
     actionTopics.select(value);
+    actionTopics.get(value);
   }
 }
 

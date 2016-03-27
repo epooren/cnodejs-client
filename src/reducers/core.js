@@ -7,17 +7,6 @@ function notify(state, action) {
 
 
 
-let parallelNum = 0;
-function loading(state, action) {
-  action.show ? parallelNum++ : parallelNum--;
-  parallelNum < 0 && (parallelNum = 0);
-
-  return state.merge({
-    show: (parallelNum > 0),
-    content: (action.content || '数据加载中')
-  });
-}
-
 
 function setMaster(state, action) {
   return state.merge({
@@ -44,9 +33,9 @@ function topics(state, action) {
 
 
   // set data
-  return state.update(action.tab, (topics) => {
+  return state.update(action.tab, (topics = fromJS({})) => {
     // 失败
-    if (action.status === 'fail') {
+    if (action.status !== 'done') {
       return topics.set('status', action.status);
     }
 
@@ -62,8 +51,8 @@ function topics(state, action) {
     });
 
     // if 第一页 else more
-    if (action === 1) {
-      topics = topics.set('data', fronJS(action.data));
+    if (action.page === 1) {
+      topics = topics.set('data', fromJS(action.data));
     } else {
       topics = topics.update('data', (data) => data.concat(action.data));
     }

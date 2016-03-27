@@ -39,4 +39,4 @@ function hide() {
     notify(false);
 }
 
-module.exports = {info, success, error, warn, hide};
+module.exports = {info, success, error, warn, hide, loading};
