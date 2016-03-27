@@ -12,7 +12,15 @@ class List extends Component {
   render() {
     const {tab} = this.props;
 
-    return (<View><Text>{tab}</Text></View>);
+    return (
+      <View style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <Text>{tab}</Text>
+      </View>
+    );
   }
 }
 

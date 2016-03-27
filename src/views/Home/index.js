@@ -1,20 +1,27 @@
-const {Component} = require('react');
+const React = require('react-native');
+const {Component} = React;
 const {connect} = require('react-redux');
-const Render = require('./IndexRender');
+const TabBar = require('./TabBar');
+//const Render = require('./IndexRender');
 
-class Index extends Component {
+class Home extends Component {
 
   // methods
   render() {
-    return Render.call(this);
+    const {tab} = this.props;
+
+    return (<TabBar tab={tab} />);
   }
 }
 
 function mapStateToProps(state) {
+  state = state.toJS();
 
-  return state.toJS();
+  return {
+    tab: state.selectedTab
+  };
 }
 
-const Container = connect(mapStateToProps)(Index);
+const HomeContainer = connect(mapStateToProps)(Home);
 
-module.exports = Container;
+module.exports = HomeContainer;

@@ -5,25 +5,37 @@ const {
 } = React;
 const List = require('./List');
 
-const mapTabs = ['ask', 'share', 'job', 'good'];
+const mapTabs = ['all', 'ask', 'share', 'job', 'good'];
 
-class TabBar extends AnotherClass {
+class TabBar extends Component {
 
   // methods
   render() {
-    const {tab} = this.props;
+    const {topics} = this.props;
+    const {selectedTab} = topics;
 
     return (
-      <TabBarIOS>{mapTabs.map((value) => {
+      <TabBarIOS style={{
+        //backgroundColor: 'blue'
+      }}>
+      {mapTabs.map((value) => {
         return (
           <TabBarIOS.Item
+            key={value}
             title={value}
-            selected={tab === value}
-            onPress={}>
-            <List tab={value} />
+            selected={value === selectedTab}
+            onPress={this.select}>
+            <List tab={value} topics={topics[value]} />
           </TabBarIOS.Item>
         );
-      })}</TabBarIOS>
+      })}
+      </TabBarIOS>
     );
   }
+
+  select() {
+
+  }
 }
+
+module.exports = TabBar;

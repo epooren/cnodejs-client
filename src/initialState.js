@@ -6,14 +6,14 @@ module.exports = fromJS({
     /* show, type, content */
   },
 
-  /* selectedTab */
+  selectedTab: 'topics',
 
   master: {
     /* accesstoken, username */
   },
 
   topics: {
-    /* selectedTab */
+    selectedTab: 'all'
 
     /**
      * 每个tab对应1个数据对象
