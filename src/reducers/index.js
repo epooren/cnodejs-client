@@ -1,5 +1,5 @@
 const {fromJS} = require('immutable');
-const {constants} = require('../constants');
+const constants = require('../constants');
 
 
 function reducer(state = fromJS({}), action) {
@@ -42,6 +42,9 @@ function reducer(state = fromJS({}), action) {
       return state.update('message', (state) => core.setMessage(state, action));
   }
 
+  return state;
 }
 
+
+module.exports = reducer;
 

@@ -1,4 +1,5 @@
 const {Component} = require('react');
+const {connect} = require('react-redux');
 const Render = require('./IndexRender');
 
 class Index extends Component {
@@ -9,4 +10,10 @@ class Index extends Component {
   }
 }
 
-module.exports = Index;
+function mapStateToProps(state) {
+  return state.toJS();
+}
+
+const Container = connect(mapStateToProps)(Index);
+
+module.exports = Container;
