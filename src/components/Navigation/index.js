@@ -45,7 +45,7 @@ Router.propTypes = {
 
 function testRoute(route) {
   if (!Route.isInstance(route)) {
-    throw new Error('route必须是Route实例');
+    throw new Error('route不是Route实例');
   }
 }
 

@@ -8,8 +8,8 @@ const {FloatFromRight} = Navigator.SceneConfigs;
 class Route {
   constructor({Component, props, scene = FloatFromRight} = args) {
     // TODO 验证Component参数必须存在 且必须是Component
-    if (!(Component instanceof React.Component)) {
-      throw new Error('Component必须是React.Component实例');
+    if ((Object.getPrototypeOf(Component) !== React.Component)) {
+      throw new Error('Component不是React.Component子类');
     }
 
     this.scene = scene;
