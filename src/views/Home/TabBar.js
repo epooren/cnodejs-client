@@ -5,6 +5,7 @@ const {
   Text,
   TabBarIOS
 } = React;
+const actionTab = require('../../actions/tab');
 const Topics = require('../Topics');
 const Messages = require('../Messages');
 const Me = require('../Me');
@@ -25,29 +26,29 @@ class TabBar extends Component {
           systemIcon="featured"
           title="Topics"
           selected={tab === 'topics'}
-          onPress={this.select}>
+          onPress={this.select.bind(this, 'topics')}>
           <Topics />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="contacts"
           title="Messages"
           selected={tab === 'messages'}
-          onPress={this.select}>
+          onPress={this.select.bind(this, 'messages')}>
           <Messages />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="bookmarks"
           title="Me"
           selected={tab === 'me'}
-          onPress={this.select}>
+          onPress={this.select.bind(this, 'me')}>
           <Me />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
   }
 
-  select() {
-
+  select(tab) {
+    actionTab.select(tab);
   }
 }
 
