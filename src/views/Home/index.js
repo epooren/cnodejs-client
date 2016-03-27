@@ -11,6 +11,7 @@ class Index extends Component {
 }
 
 function mapStateToProps(state) {
+
   return state.toJS();
 }
 
