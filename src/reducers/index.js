@@ -1,6 +1,6 @@
 const {fromJS} = require('immutable');
 const constants = require('../constants');
-
+const core = require('./core');
 
 function reducer(state = fromJS({}), action) {
   switch (action.type) {
@@ -13,8 +13,9 @@ function reducer(state = fromJS({}), action) {
     case constants.SET_MASTER:
       return state.update('master', (state) => core.setMaster(state, action));
 
+    case constants.SELECT_TOPICS_TAB:
     case constants.SET_TOPICS:
-      return state.update('topics', (state) => core.setTopics(state, action));
+      return state.update('topics', (state) => core.topics(state, action));
 
     case constants.SET_USER_TOPICS:
       return state.update('userTopics', (state) => core.setUserTopics(state, action));

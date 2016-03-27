@@ -1,5 +1,5 @@
 const {dispatch, getState} = require('../store');
-const {SET_TOPICS, SET_TOPIC} = require('../constants');
+const {SET_TOPICS, SET_TOPIC, SELECT_TOPICS_TAB} = require('../constants');
 const services = require('../services');
 const notify = require('./notify');
 
@@ -11,6 +11,15 @@ function set(tab, status, page, limit, data) {
     page: page,
     limit: limit,
     data: data
+  };
+
+  dispatch(action);
+}
+
+function setTab(tab) {
+  const action = {
+    type: SELECT_TOPICS_TAB,
+    tab: tab
   };
 
   dispatch(action);
@@ -54,30 +63,14 @@ function getDetail(id) {
     .catch((err) => notify.error(err.message));
 }
 
-
-function createTopic(tab, title, content) {
-  let state = getState();
-  const token = state.getIn(['master', 'token']);
-
-  if (!token) {
-    notify.warn('未登录或登录已过期');
-    return;
-  }
-
-  notify.loading();
-
-  return services
-    .createTopic(token, tab, title, content)
-    .then((response) => {
-      loading.hide();
-
-      // TODO 插入userTopics
-    })
-    .catch((err) => notify.error(err.message));
+function select(tab) {
+  setTab(tab);
 }
+
+
 
 module.exports = {
   get,
   getDetail,
-  createTopic
+  select
 };

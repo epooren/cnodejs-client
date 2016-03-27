@@ -28,4 +28,26 @@ function get(username) {
     .catch((err) => notify.error(err.message));
 }
 
-module.exports = {get};
+
+function create(tab, title, content) {
+  let state = getState();
+  const token = state.getIn(['master', 'token']);
+
+  if (!token) {
+    notify.warn('未登录或登录已过期');
+    return;
+  }
+
+  notify.loading();
+
+  return services
+    .createTopic(token, tab, title, content)
+    .then((response) => {
+      loading.hide();
+
+      // TODO 插入userTopics
+    })
+    .catch((err) => notify.error(err.message));
+}
+
+module.exports = {get, create};

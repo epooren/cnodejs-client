@@ -1,5 +1,5 @@
 const {fromJS} = require('immutable');
-const {constants} = require('../constants');
+const constants = require('../constants');
 
 function notify(state, action) {
   return state.merge(action.notification);
@@ -27,7 +27,7 @@ function setMaster(state, action) {
 }
 
 
-function setTopics(state, action) {
+function topics(state, action) {
   /**
    * action
    *   * tab
@@ -38,9 +38,12 @@ function setTopics(state, action) {
    */
 
   // selected tab
-  state = state.set('selectedTab', action.tab);
+  if (action.type === constants.SELECT_TOPICS_TAB) {
+    return state.set('selectedTab', action.tab);
+  }
 
 
+  // set data
   return state.update(action.tab, (topics) => {
     // 失败
     if (action.status === 'fail') {
@@ -142,3 +145,18 @@ function setMessage(state, action) {
 
   return state.set(message.id, message);
 }
+
+module.exports = {
+  notify,
+  setMaster,
+  topics,
+  setUserTopics,
+  setReplyTopics,
+  setFavTopics,
+  addFavTopics,
+  removeFavTopics,
+  setTopic,
+  setUser,
+  readMessages,
+  setMessage
+};

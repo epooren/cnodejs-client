@@ -1,8 +1,10 @@
 const React = require('react-native');
 const {
   Component,
-  TabBarIOS
+  View,
+  SegmentedControlIOS
 } = React;
+const actionTopics = require('../../actions/topics');
 const List = require('./List');
 
 const mapTabs = ['all', 'ask', 'share', 'job', 'good'];
@@ -15,26 +17,20 @@ class TabBar extends Component {
     const {selectedTab} = topics;
 
     return (
-      <TabBarIOS style={{
-        //backgroundColor: 'blue'
+      <View style={{
+        marginTop: 20
       }}>
-      {mapTabs.map((value) => {
-        return (
-          <TabBarIOS.Item
-            key={value}
-            title={value}
-            selected={value === selectedTab}
-            onPress={this.select}>
-            <List tab={value} topics={topics[value]} />
-          </TabBarIOS.Item>
-        );
-      })}
-      </TabBarIOS>
+        <SegmentedControlIOS
+          selectedIndex={mapTabs.indexOf(selectedTab)}
+          values={mapTabs}
+          onValueChange={this.select} />
+        <List tab={selectedTab} topics={topics[selectedTab]} />
+      </View>
     );
   }
 
-  select() {
-
+  select(value) {
+    actionTopics.select(value);
   }
 }
 
