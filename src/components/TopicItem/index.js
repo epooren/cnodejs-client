@@ -4,7 +4,7 @@ const {
   PropTypes,
   Navigator
 } = React;
-const Topic = require('../../views/Home');
+const Topic = require('../../views/Topic/');
 const {Route} = require('../Navigation');
 const Render = require('./IndexRender');
 
