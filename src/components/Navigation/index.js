@@ -6,7 +6,9 @@ const {
 } = React;
 const Route = require('./Route');
 
+
 class Router extends Component {
+
 
   // methods
   render() {
@@ -26,7 +28,9 @@ class Router extends Component {
     testRoute(route);
 
     return (
-      <route.Component {...route.props} navigator={navigator} />
+      <PassNavigator navigator={navigator}>
+        <route.Component {...route.props} navigator={navigator} />
+      </PassNavigator>
     );
   }
 
@@ -37,10 +41,31 @@ class Router extends Component {
   }
 }
 
+
 Router.Route = Route;
 
 Router.propTypes = {
   initialRoute: PropTypes.instanceOf(Route)
+};
+
+
+/**
+ * 传递router到后代组件
+ */
+class PassNavigator extends Component {
+  getChildContext() {
+    return {
+      router: this.props.navigator
+    };
+  }
+
+  render() {
+    return this.props.children
+  }
+}
+
+PassNavigator.childContextTypes = {
+  router: PropTypes.object
 };
 
 function testRoute(route) {
