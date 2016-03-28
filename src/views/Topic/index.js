@@ -1,18 +1,19 @@
 const React = require('react-native');
 const {
-  Component,
-  Text
+  Component
 } = React;
+const Render = require('./IndexRender');
+
 
 class Topic extends Component {
 
 
   // methods
   render() {
-    return (
-      <Text>tes</Text>
-    );
+    return Render.call(this);
   }
 }
+
+
 
 module.exports = Topic;
