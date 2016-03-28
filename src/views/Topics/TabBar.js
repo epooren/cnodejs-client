@@ -1,32 +1,15 @@
 const React = require('react-native');
 const {
-  Component,
-  View,
-  SegmentedControlIOS
+  Component
 } = React;
 const actionTopics = require('../../actions/topics');
-const List = require('./List');
-
-const mapTabs = ['all', 'ask', 'share', 'job', 'good'];
+const Render = require('./TabBarRender');
 
 class TabBar extends Component {
 
   // methods
   render() {
-    const {topics} = this.props;
-    const {selectedTab} = topics;
-
-    return (
-      <View style={{
-        marginTop: 20
-      }}>
-        <SegmentedControlIOS
-          selectedIndex={mapTabs.indexOf(selectedTab)}
-          values={mapTabs}
-          onValueChange={this.select} />
-        <List tab={selectedTab} topics={topics[selectedTab]} />
-      </View>
-    );
+    return Render.call(this);
   }
 
   select(value) {

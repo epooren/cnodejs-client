@@ -36,8 +36,10 @@ class Router extends Component {
 
   _configureScene(route) {
     testRoute(route);
+    const config = route.Component.config || {};
+    const scene = config.scene || Navigator.SceneConfigs.FloatFromRight;
 
-    return route.scene;
+    return scene;
   }
 }
 

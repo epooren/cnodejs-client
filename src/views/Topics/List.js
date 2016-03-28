@@ -1,13 +1,10 @@
 const React = require('react-native');
 const {
   Component,
-  ListView,
-  View,
-  Text,
-  TouchableHighlight
+  ListView
 } = React;
 const actionTopics = require('../../actions/topics');
-const TopicItem = require('../../components/TopicItem');
+const Render = require('./ListRender');
 
 class List extends Component {
   constructor(props) {
@@ -20,20 +17,7 @@ class List extends Component {
 
   // methods
   render() {
-    let {topics} = this.props;
-
-    if (!topics || topics.status === 'pending') {
-      return null;
-    }
-
-    topics = this.ds.cloneWithRows(topics.data);
-
-    return (
-      <ListView
-        dataSource={topics}
-        renderRow={this._renderRow}
-        />
-    );
+    return Render.call(this);
   }
 
   componentDidMount() {
@@ -42,8 +26,10 @@ class List extends Component {
     actionTopics.get(tab);
   }
 
-  _renderRow(topic) {
-    return (<TopicItem topic={topic} />);
+  _getDataSource() {
+    const {topics} = this.props;
+
+    return this.ds.cloneWithRows(topics.data);
   }
 }
 

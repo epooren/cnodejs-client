@@ -1,19 +1,15 @@
 const React = require('react-native');
 const {
-  Component,
-  View
+  Component
 } = React;
 const {connect} = require('react-redux');
-const TabBar = require('./TabBar');
+const Render = require('./IndexRender');
 
 class Topics extends Component {
 
-
   // methods
   render() {
-    const {topics} = this.props;
-
-    return <TabBar topics={topics} />
+    return Render.call(this);
   }
 }
 

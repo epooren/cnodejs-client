@@ -1,10 +1,8 @@
 const React = require('react-native');
-const {
-  View,
-  Text,
-  TabBarIOS,
-  TouchableHighlight
-} = React;
+const {TabBarIOS} = React;
+const Topics = require('../Topics');
+const Messages = require('../Messages');
+const Me = require('../Me');
 
 const mapTabs = ['topics', 'messages', 'me'];
 
@@ -14,26 +12,27 @@ module.exports = function () {
   return (
     <TabBarIOS>
       <TabBarIOS.Item
-        systemIcon="history"
+        systemIcon="featured"
         title="Topics"
         selected={tab === 'topics'}
-        onPress={this.props}>
-        <View><Text>topics</Text></View>
+        onPress={this.select.bind(this, 'topics')}>
+        <Topics />
       </TabBarIOS.Item>
       <TabBarIOS.Item
-        systemIcon="history"
+        systemIcon="contacts"
         title="Messages"
         selected={tab === 'messages'}
-        onPress={this.props}>
-        <View><Text>messages</Text></View>
+        onPress={this.select.bind(this, 'messages')}>
+        <Messages />
       </TabBarIOS.Item>
       <TabBarIOS.Item
-        systemIcon="history"
+        systemIcon="bookmarks"
         title="Me"
-        selected={tab === 'greenTab'}
-        onPress={this.props}>
-        <View><Text>me</Text></View>
+        selected={tab === 'me'}
+        onPress={this.select.bind(this, 'me')}>
+        <Me />
       </TabBarIOS.Item>
     </TabBarIOS>
   );
 };
+

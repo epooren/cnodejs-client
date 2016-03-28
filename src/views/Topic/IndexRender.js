@@ -1,6 +1,5 @@
 const React = require('react-native');
 const {
-  Component,
   View,
   ScrollView,
   Text,
