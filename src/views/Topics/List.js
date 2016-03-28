@@ -7,6 +7,7 @@ const {
   TouchableHighlight
 } = React;
 const actionTopics = require('../../actions/topics');
+const TopicItem = require('../../components/TopicItem');
 
 class List extends Component {
   constructor(props) {
@@ -42,13 +43,7 @@ class List extends Component {
   }
 
   _renderRow(topic) {
-    return (
-      <View>
-        <TouchableHighlight>
-          <Text>{topic.id}</Text>
-        </TouchableHighlight>
-      </View>
-    );
+    return (<TopicItem topic={topic} />);
   }
 }
 

@@ -55,7 +55,7 @@ Router.propTypes = {
 class PassNavigator extends Component {
   getChildContext() {
     return {
-      router: this.props.navigator
+      navigator: this.props.navigator
     };
   }
 
@@ -65,7 +65,7 @@ class PassNavigator extends Component {
 }
 
 PassNavigator.childContextTypes = {
-  router: PropTypes.object
+  navigator: PropTypes.object
 };
 
 function testRoute(route) {

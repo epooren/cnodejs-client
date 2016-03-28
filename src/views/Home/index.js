@@ -12,14 +12,8 @@ class Home extends Component {
   render() {
     const {tab} = this.props;
 
-    console.log(this.context);
-
     return (<TabBar tab={tab} />);
   }
-}
-
-Home.contextTypes = {
-  router: React.PropTypes.object
 }
 
 function mapStateToProps(state) {
