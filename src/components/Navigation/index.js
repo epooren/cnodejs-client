@@ -5,6 +5,7 @@ const {
   PropTypes
 } = React;
 const Route = require('./Route');
+const BarRouteMapper = require('./BarRouteMapper');
 
 
 class Router extends Component {
@@ -20,7 +21,8 @@ class Router extends Component {
       <Navigator
         initialRoute={initialRoute}
         renderScene={this._renderScene}
-        configureScene={this._configureScene} />
+        configureScene={this._configureScene}
+        navigationBar={BarRouteMapper} />
     );
   }
 
