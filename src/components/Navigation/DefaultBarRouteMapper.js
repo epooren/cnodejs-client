@@ -15,7 +15,8 @@ const React = require('react-native');
 const {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet
 } = React;
 
 function getComponent(route, name) {
@@ -25,13 +26,13 @@ function getComponent(route, name) {
 }
 
 function getComponentConfig(route) {
-  return route.Component.config;
+  return route.Component.config || {};
 }
 
 function getTitle(route) {
   const config = getComponentConfig(route);
 
-  if (config) {
+  if (config.title) {
     return config.title;
   } else {
     return '';
@@ -95,7 +96,7 @@ const mapper = {
     if (navRightButton) {
       return navRightButton(route, navigator, index, navState);
     } else {
-      return defaultLeftButton(route, navigator, index, navState);
+      return defaultRightButton(route, navigator, index, navState);
     }
   },
 
@@ -105,7 +106,7 @@ const mapper = {
     if (navTitle) {
       return navTitle(route, navigator, index, navState);
     } else {
-      return defaultLeftButton(route, navigator, index, navState);
+      return defaultTitle(route, navigator, index, navState);
     }
   }
 };

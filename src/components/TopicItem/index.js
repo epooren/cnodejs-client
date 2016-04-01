@@ -18,10 +18,7 @@ class TopicItem extends Component {
   navToTopic() {
     const {navigator} = this.context;
     const {topic} = this.props;
-    const route = new Route({
-      Component: Topic,
-      props: {topic: topic}
-    });
+    const route = new Route(Topic, {topic: topic});
 
     navigator.push(route);
   }
