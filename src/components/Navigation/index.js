@@ -5,8 +5,8 @@ const {
   PropTypes
 } = React;
 const Route = require('./Route');
-const BarRouteMapper = require('./BarRouteMapper');
-
+const DefaultBar = require('./DefaultBar');
+const DefaultBarRouteMapper = require('./DefaultBarRouteMapper');
 
 class Router extends Component {
 
@@ -22,7 +22,11 @@ class Router extends Component {
         initialRoute={initialRoute}
         renderScene={this._renderScene}
         configureScene={this._configureScene}
-        navigationBar={BarRouteMapper} />
+        navigationBar={
+          <DefaultBar
+            routeMapper={DefaultBarRouteMapper}
+            style={{backgroundColor: '#ffffff'}} />
+        } />
     );
   }
 

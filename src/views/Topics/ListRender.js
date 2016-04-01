@@ -1,6 +1,8 @@
 const React = require('react-native');
 const {
-  ListView
+  ListView,
+  View,
+  Text
 } = React;
 const TopicItem = require('../../components/TopicItem');
 
@@ -14,10 +16,12 @@ module.exports = function () {
   const ds = this._getDataSource();
 
   return (
-    <ListView
-      dataSource={ds}
-      renderRow={renderRow}
-      />
+    <View>
+      <ListView
+        dataSource={ds}
+        renderRow={renderRow}
+        />
+    </View>
   );
 };
 
