@@ -22,7 +22,6 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @providesModule NavigatorNavigationBarStylesIOS
  *
  * @override by daifee <github.com/epooren>
  */
@@ -31,7 +30,7 @@
 // var Dimensions = require('Dimensions');
 var {Dimensions} = require('react-native');
 
-//var buildStyleInterpolator = require('./buildStyleInterpolator.js');
+var buildStyleInterpolator = require('./buildStyleInterpolator.js');
 var merge = require('./merge');
 
 var SCREEN_WIDTH = Dimensions.get('window').width;

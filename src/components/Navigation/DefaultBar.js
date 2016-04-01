@@ -22,13 +22,12 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @providesModule NavigatorNavigationBar
  *
  * @override by daifee <github.com/epooren>
  */
 'use strict';
 
-var React = require('react');
+var React = require('react-native');
 // var Platform = require('Platform');
 // var StyleSheet = require('StyleSheet');
 // var View = require('View');

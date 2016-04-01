@@ -22,13 +22,12 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @providesModule NavigatorNavigationBarStylesAndroid
  *
  * @override by daifee <github.com/epooren>
  */
 'use strict';
 
-//var buildStyleInterpolator = require('./buildStyleInterpolator.js');
+var buildStyleInterpolator = require('./buildStyleInterpolator.js');
 var merge = require('./merge');
 
 // Android Material Design
