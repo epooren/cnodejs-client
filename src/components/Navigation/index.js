@@ -2,7 +2,8 @@ const React = require('react-native');
 const {
   Component,
   Navigator,
-  PropTypes
+  PropTypes,
+  StyleSheet
 } = React;
 const Route = require('./Route');
 const DefaultBar = require('./DefaultBar');
@@ -25,7 +26,7 @@ class Router extends Component {
         navigationBar={
           <DefaultBar
             routeMapper={DefaultBarRouteMapper}
-            style={{backgroundColor: '#ffffff'}} />
+            style={setyles.navBar} />
         } />
     );
   }
@@ -82,5 +83,10 @@ function testRoute(route) {
   }
 }
 
+const setyles = StyleSheet.create({
+  navBar: {
+    backgroundColor: '#666'
+  }
+});
 
 module.exports = Router;

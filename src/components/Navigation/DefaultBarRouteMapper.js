@@ -57,9 +57,13 @@ function defaultLeftButton(route, navigator, index, navState) {
 }
 
 function defaultRightButton(route, navigator, index, navState) {
+  if (index <= 1) {
+    return null;
+  }
+
   return (
     <TouchableOpacity
-      onPress={() => navigator.push(newRandomRoute())}
+      onPress={() => navigator.popToTop()}
       style={styles.navBarRightButton}>
       <Text style={[styles.navBarText, styles.navBarButtonText]}>
         首页
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   navBarTitleText: {
-    color: '#373E4D',
+    color: '#fff',
     fontWeight: '500',
     marginVertical: 9,
   },
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   navBarButtonText: {
-    color: '#5890FF',
+    color: '#fff',
   }
 });
 
