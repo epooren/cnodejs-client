@@ -16,7 +16,7 @@ class Router extends Component {
   render() {
     const {initialRoute} = this.props;
 
-    testRoute(initialRoute);
+    checkRoute(initialRoute);
 
     return (
       <Navigator
@@ -32,7 +32,7 @@ class Router extends Component {
   }
 
   _renderScene(route, navigator) {
-    testRoute(route);
+    checkRoute(route);
 
     return (
       <PassNavigator navigator={navigator}>
@@ -42,7 +42,7 @@ class Router extends Component {
   }
 
   _configureScene(route) {
-    testRoute(route);
+    checkRoute(route);
     const config = route.Component.config || {};
     const scene = config.scene || Navigator.SceneConfigs.FloatFromRight;
 
@@ -77,8 +77,8 @@ PassNavigator.childContextTypes = {
   navigator: PropTypes.object
 };
 
-function testRoute(route) {
-  if (!Route.isInstance(route)) {
+function checkRoute(route) {
+  if (!(route instanceof Route)) {
     throw new Error('route不是Route实例');
   }
 }

@@ -18,9 +18,6 @@ class Route {
   // methods
 }
 
-Route.isInstance = function (obj) {
-  return obj instanceof Route;
-};
 
 
 

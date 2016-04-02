@@ -1,8 +1,9 @@
 const React = require('react');
-const Base = require('./IndexBase');
+const Base = require('./LoginBase');
 const Render = require('./IndexRender');
 
-class Messages extends Base {
+
+class Login extends Base {
 
   // methods
   render() {
@@ -10,5 +11,4 @@ class Messages extends Base {
   }
 }
 
-
-module.exports = Messages;
+module.exports = Login;
