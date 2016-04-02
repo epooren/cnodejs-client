@@ -30,6 +30,10 @@ function getComponentConfig(route) {
 }
 
 function getTitle(route) {
+  if (route.title) {
+    return route.title;
+  }
+
   const config = getComponentConfig(route);
 
   if (config.title) {
@@ -44,13 +48,12 @@ function defaultLeftButton(route, navigator, index, navState) {
     return null;
   }
 
-  const previousRoute = navState.routeStack[index - 1];
   return (
     <TouchableOpacity
       onPress={() => navigator.pop()}
       style={styles.navBarLeftButton}>
       <Text style={[styles.navBarText, styles.navBarButtonText]}>
-        {getTitle(previousRoute) || '返回'}
+        返回
       </Text>
     </TouchableOpacity>
   );

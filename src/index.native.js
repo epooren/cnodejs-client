@@ -10,7 +10,7 @@ const Home = require('./views/Home');
 const store = require('./store');
 
 
-const initialRoute = new Route(Home);
+const initialRoute = new Route(Home, 'CnodejsClient');
 
 class CnodejsClient extends Component {
   render() {
