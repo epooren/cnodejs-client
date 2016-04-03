@@ -2,11 +2,13 @@
  * Route for Navigation
  */
 
-const {Component} = require('react');
+const React = require('react-native');
 
 class Route {
   constructor(Component, title = '', props = {}) {
-    componentChecker(Component);
+    if (getAncestors(Component).indexOf(React.Component) === -1) {
+      throw new Error('Component不是React.Component子类');
+    }
 
     this.Component = Component;
     this.props = props;
@@ -18,12 +20,8 @@ class Route {
 
 
 
-function componentChecker(value) {
-  if (getAncestors(value).indexOf(Component) === -1) {
-    throw new Error('Component不是React.Component子类');
-  }
-}
 
+getAncestors.result = [];
 
 function getAncestors(c) {
     let parent = Object.getPrototypeOf(c);
@@ -37,6 +35,5 @@ function getAncestors(c) {
         return result;
     }
 }
-getAncestors.result = [];
 
 module.exports = Route;

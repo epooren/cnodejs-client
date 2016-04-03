@@ -6,60 +6,60 @@ const {
   StyleSheet
 } = React;
 const Route = require('./Route');
+const BarConfig = require('./BarConfig');
 const DefaultBar = require('./DefaultBar');
-const DefaultBarRouteMapper = require('./DefaultBarRouteMapper');
+const RouteMapper = require('./RouteMapper');
 
-class Router extends Component {
+function Navigation() {
+  const {initialRoute} = this.props;
 
+  return (
+    <Navigator
+     initialRoute={initialRoute}
+     renderScene={renderScene}
+     configureScene={configureScene}
+     navigationBar={renderNavigationBar()} />
+  );
+}
 
-  // methods
-  render() {
-    const {initialRoute} = this.props;
+Navigation.Route = Route;
+Navigation.BarConfig = BarConfig;
 
-    checkRoute(initialRoute);
+function renderScene(route, navigator) {
+  routeChecker(route);
 
-    return (
-      <Navigator
-        initialRoute={initialRoute}
-        renderScene={this._renderScene}
-        configureScene={this._configureScene}
-        navigationBar={
-          <DefaultBar
-            routeMapper={DefaultBarRouteMapper}
-            style={setyles.navBar} />
-        } />
-    );
-  }
+  return (
+    <PassNavigator navigator={navigator}>
+      <route.Component {...route.props} navigator={navigator} />
+    </PassNavigator>
+  );
+}
 
-  _renderScene(route, navigator) {
-    checkRoute(route);
+function configureScene(route) {
+  routeChecker(route);
+  const config = route.Component.config || {};
+  const scene = config.scene || Navigator.SceneConfigs.FloatFromRight;
 
-    return (
-      <PassNavigator navigator={navigator}>
-        <route.Component {...route.props} navigator={navigator} />
-      </PassNavigator>
-    );
-  }
+  return scene;
+}
 
-  _configureScene(route) {
-    checkRoute(route);
-    const config = route.Component.config || {};
-    const scene = config.scene || Navigator.SceneConfigs.FloatFromRight;
-
-    return scene;
-  }
+function renderNavigationBar() {
+  return (
+    <DefaultBar
+      routeMapper={RouteMapper}
+      style={styles.navBar} />
+  );
 }
 
 
-Router.Route = Route;
 
-Router.propTypes = {
+Navigation.propTypes = {
   initialRoute: PropTypes.instanceOf(Route)
 };
 
 
 /**
- * 传递router到后代组件
+ * 为了方便传递navigator到后代组件
  */
 class PassNavigator extends Component {
   getChildContext() {
@@ -77,7 +77,7 @@ PassNavigator.childContextTypes = {
   navigator: PropTypes.object
 };
 
-function checkRoute(route) {
+function routeChecker(route) {
   if (!(route instanceof Route)) {
     throw new Error('route不是Route实例');
   }
