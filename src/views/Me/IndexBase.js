@@ -1,10 +1,11 @@
 const {Component} = require('react');
 
 class MeBase extends Component {
+  constructor(props) {
+    super(props);
 
-  navToMyTopics(type) {
-    // type = create | reply
-    // TODO
+    this.routeMyTopics;
+    this.routeReplyTopics;
   }
 }
 
