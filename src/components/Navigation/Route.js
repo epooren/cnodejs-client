@@ -19,9 +19,11 @@ class Route {
 
 
 function componentChecker(value) {
-  if (getAncestors(value).indexOf(Component) === -1) {
-    throw new Error('Component不是React.Component子类');
+  if (typeof value === 'function'|| getAncestors(value).indexOf(Component) !== -1) {
+    return;
   }
+
+  throw new Error('Component不是合法组件');
 }
 
 
