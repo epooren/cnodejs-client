@@ -9,9 +9,9 @@ const {
 } = React;
 const {Route} = require('../Navigation');
 
-function Cell() {
-  const {content, route} = this.props;
-  const {navigator} = this.context;
+function Cell(props, context) {
+  const {content, route} = props;
+  const {navigator} = context;
 
   return (
     <View>

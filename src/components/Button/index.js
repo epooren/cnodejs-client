@@ -6,12 +6,12 @@ const {
   PropTypes
 } = React;
 
-function Button() {
-  const {handleClick, children} = this.props;
+function Button(props) {
+  const {handleClick, children} = props;
 
   return (
     <TouchableOpacity onPress={handleClick}>
-      <Text>{Children.only(children)}</Text>
+      <Text>{children}</Text>
     </TouchableOpacity>
   );
 }

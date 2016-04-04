@@ -53,7 +53,7 @@ class Me extends Component {
 }
 
 Me.propTypes = {
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   user: PropTypes.object
 };
 

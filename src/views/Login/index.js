@@ -1,3 +1,8 @@
+/**
+ * 登录后的路由：
+ *   * 如果有ref，否则返回上一层
+ */
+
 const React = require('react-native');
 const {
   View,
@@ -9,14 +14,20 @@ const {connect} = require('react-redux');
 const Button = require('../../components/Button');
 
 
-function Login() {
-  const {toekn} = this.props;
+function Login(props) {
+  let {token} = props;
+
+  token || (token = '');
 
   return (
-    <View>
+    <View style={{
+      flex: 1,
+      backgroundColor: 'red',
+      marginTop: 64
+    }}>
       <Text>Login</Text>
       <TextInput
-        value={toekn}
+        value={token}
         onChangeText={inputToken}
         onSubmitEditing={verify.bind(null, token)}
         placeholder="请输入token" />
@@ -49,6 +60,5 @@ function mapStateToProps(state) {
 }
 
 
-const LoginContainer = connect(mapStateToProps)(Login);
 
-module.exports = LoginContainer;
+module.exports = connect(mapStateToProps)(Login);
