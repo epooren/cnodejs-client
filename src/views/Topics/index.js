@@ -7,6 +7,7 @@ const {
 } = React;
 const {connect} = require('react-redux');
 const TopicList = require('../../components/TopicList');
+const actionTopics = require('../../actions/topics');
 const mapTabs = ['all', 'ask', 'share', 'job', 'good'];
 
 
@@ -14,31 +15,43 @@ class Topics extends Component {
 
   // methods
   render() {
-    const {topics} = this.props;
+    let {topics} = this.props;
     const {selectedTab} = topics;
-    const data = topics[selectedTab];
+    topics = topics[selectedTab];
 
-    if (!data) {
-      return null;
-    }
+
+    const isEmpty = !topics || !topics.data
 
     return (
-      <View>
+      <View style={{
+        flex: 1,
+        marginTop: 64,
+        marginBottom: 48
+      }}>
         <SegmentedControlIOS
           selectedIndex={mapTabs.indexOf(selectedTab)}
           values={mapTabs}
-          onValueChange={this.select} />
-        <TopicList topics={data} />
+          onValueChange={this.select.bind(this)} />
+        {isEmpty || <TopicList topics={topics.data} />}
       </View>
     );
   }
 
   componentDidMount() {
-    // TODO
+    const {topics} = this.props;
+    const {selectedTab} = topics;
+
+    actionTopics.get(selectedTab);
   }
 
-  select() {
-    // TODO
+  select(tab) {
+    let {topics} = this.props;
+    topics = topics[tab];
+    actionTopics.select(tab);
+
+    if (topics) return;
+
+    actionTopics.get(tab);
   }
 }
 

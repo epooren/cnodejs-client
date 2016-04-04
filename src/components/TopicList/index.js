@@ -7,21 +7,23 @@ const {
 const Item = require('../TopicItem');
 
 const dataSource = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2
+  rowHasChanged: (r1, r2) => r1.id !== r2.id
 });
 
-function TopicList() {
-  const {topics} = this.props;
+function TopicList(props) {
+  const {topics} = props;
   const rows = dataSource.cloneWithRows(topics);
 
   return (
-    <View>
-      <ListView
-        dataSource={rows}
-        renderRow={renderRow} />
-    </View>
+    <ListView
+      style={{
+        flex: 1
+      }}
+      dataSource={rows}
+      renderRow={renderRow} />
   );
 }
+
 
 TopicList.propTypes = {
   topics: PropTypes.array.isRequired
