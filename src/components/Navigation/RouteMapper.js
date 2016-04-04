@@ -21,7 +21,7 @@ const mapper = {
       return null;
     }
 
-    navBar.LeftButton(route, navigator, index, navState);
+    return navBar.LeftButton(route, navigator, index, navState);
   },
 
   RightButton: function(route, navigator, index, navState) {
@@ -30,7 +30,7 @@ const mapper = {
       return null;
     }
 
-    navBar.RightButton(route, navigator, index, navState);
+    return navBar.RightButton(route, navigator, index, navState);
   },
 
   Title: function(route, navigator, index, navState) {
@@ -39,7 +39,7 @@ const mapper = {
       return null;
     }
 
-    navBar.Title(route, navigator, index, navState);
+    return navBar.Title(route, navigator, index, navState);
   }
 };
 
