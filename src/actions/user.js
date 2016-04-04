@@ -10,7 +10,7 @@ function set(user) {
     user: user
   };
 
-  dispatch(user);
+  dispatch(action);
 }
 
 function setMaster(name, token) {
