@@ -3,10 +3,10 @@ const {
   View,
   ScrollView,
   Text,
-  TouchableHighlight
+  PropTypes
 } = React;
 
-module.exports = function () {
+function Topic() {
   const {topic} = this.props;
 
   return (
@@ -21,4 +21,10 @@ module.exports = function () {
       <View><Text>{topic.content}</Text></View>
     </ScrollView>
   );
+}
+
+Topic.propTypes = {
+  topic: PropTypes.object.isRequired
 };
+
+module.exports = Topic;
