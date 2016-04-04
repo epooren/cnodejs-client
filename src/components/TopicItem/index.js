@@ -16,7 +16,7 @@ function TopicItem(props, context) {
 
   return (
     <View>
-      <TouchableOpacity onPress={navToTopic.bind(null, navigator, topic)}>
+      <TouchableOpacity onPress={navToTopic.bind(navigator, topic)}>
         <View>
           <View><Text>{topic.title}</Text></View>
           <View>
@@ -30,12 +30,12 @@ function TopicItem(props, context) {
   );
 }
 
-function navToTopic(navigator, topic) {
+function navToTopic(topic) {
   const route = new Route(Topic, topic.title, {
-    id: topic.id
+    topic: topic
   });
 
-  navigator.push(route);
+  this.push(route);
 }
 
 TopicItem.contextTypes = {
