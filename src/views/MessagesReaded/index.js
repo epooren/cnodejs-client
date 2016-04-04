@@ -28,8 +28,7 @@ MessagesReaded.propTypes = {};
 function mapStateToProps(state) {
   state = state.toJS();
 
-  return ();
+  return {};
 }
 
-const MessagesReadedContainer = connect()(MessagesReaded);
-module.exports = MessagesReadedContainer;
+module.exports = connect()(MessagesReaded);

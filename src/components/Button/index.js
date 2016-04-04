@@ -2,7 +2,7 @@ const React = require('react-native');
 const {
   TouchableOpacity,
   Text,
-  Children
+  Children,
   PropTypes
 } = React;
 

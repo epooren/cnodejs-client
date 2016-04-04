@@ -7,10 +7,10 @@ const Topics = require('../Topics');
 const Messages = require('../Messages');
 const Me = require('../Me');
 const actionTab = require('../../actions/tab');
-// const mapTabs = ['topics', 'messages', 'me'];
 
-function Index() {
-  const {tab} = this.props;
+
+function Index(props) {
+  const {tab} = props;
 
   return (
     <TabBarIOS>
@@ -44,7 +44,7 @@ function select(tab) {
 }
 
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   state = state.toJS();
 
   return {

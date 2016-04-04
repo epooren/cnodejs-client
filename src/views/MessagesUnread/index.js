@@ -28,7 +28,7 @@ MessagesUnread.propTypes = {};
 function mapStateToProps(state) {
   state = state.toJS();
 
-  return ();
+  return {};
 }
 
 const MessagesUnreadContainer = connect()(MessagesUnread);

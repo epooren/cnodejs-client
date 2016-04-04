@@ -10,8 +10,9 @@ const BarConfig = require('./BarConfig');
 const DefaultBar = require('./DefaultBar');
 const RouteMapper = require('./RouteMapper');
 
-function Navigation() {
-  const {initialRoute} = this.props;
+
+function Navigation(props) {
+  const {initialRoute} = props;
 
   return (
     <Navigator
@@ -83,10 +84,10 @@ function routeChecker(route) {
   }
 }
 
-const setyles = StyleSheet.create({
+const styles = StyleSheet.create({
   navBar: {
     backgroundColor: '#666'
   }
 });
 
-module.exports = Router;
+module.exports = Navigation;

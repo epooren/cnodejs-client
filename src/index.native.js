@@ -6,11 +6,11 @@ const {
 const {Provider} = require('react-redux');
 const Navigation = require('./components/Navigation');
 const {Route} = Navigation;
-const Home = require('./views/Home');
+const Index = require('./views/Index');
 const store = require('./store');
 
 
-const initialRoute = new Route(Home, 'CnodejsClient');
+const initialRoute = new Route(Index, 'CnodejsClient');
 
 class CnodejsClient extends Component {
   render() {

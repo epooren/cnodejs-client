@@ -16,6 +16,11 @@ class Topics extends Component {
   render() {
     const {topics} = this.props;
     const {selectedTab} = topics;
+    const data = topics[selectedTab];
+
+    if (!data) {
+      return null;
+    }
 
     return (
       <View>
@@ -23,7 +28,7 @@ class Topics extends Component {
           selectedIndex={mapTabs.indexOf(selectedTab)}
           values={mapTabs}
           onValueChange={this.select} />
-        <List tab={selectedTab} topics={topics[selectedTab]} />
+        <TopicList topics={data} />
       </View>
     );
   }
