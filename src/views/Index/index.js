@@ -18,21 +18,21 @@ function Index(props, context) {
   return (
     <TabBarIOS>
       <TabBarIOS.Item
-        systemIcon="featured"
+
         title="Topics"
         selected={tab === 'topics'}
         onPress={select.bind(null, 'topics', master, router)}>
         <Topics />
       </TabBarIOS.Item>
       <TabBarIOS.Item
-        systemIcon="contacts"
+
         title="Messages"
         selected={tab === 'messages'}
         onPress={select.bind(null, 'messages', master, router)}>
         <Messages />
       </TabBarIOS.Item>
       <TabBarIOS.Item
-        systemIcon="bookmarks"
+
         title="Me"
         selected={tab === 'me'}
         onPress={select.bind(null, 'me', master, router)}>
