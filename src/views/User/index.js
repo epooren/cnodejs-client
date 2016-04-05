@@ -9,7 +9,6 @@ const {connect} = require('react-redux');
 const Cell = require('../../components/Cell');
 const actionUser = require('../../actions/user');
 
-
 class User extends Component {
 
   // methods
@@ -57,7 +56,7 @@ class User extends Component {
   }
 }
 
-User.contextProps = {
+User.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
