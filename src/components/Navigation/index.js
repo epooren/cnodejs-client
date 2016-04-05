@@ -5,11 +5,12 @@ const {
   PropTypes,
   StyleSheet
 } = React;
-const Route = require('./Route');
-const BarConfig = require('./BarConfig');
 const DefaultBar = require('./DefaultBar');
 const RouteMapper = require('./RouteMapper');
+const Router = require('../../configs/Router');
+const {Route} = Router;
 
+const router = null;
 
 function Navigation(props) {
   const {initialRoute} = props;
@@ -23,25 +24,23 @@ function Navigation(props) {
   );
 }
 
-Navigation.Route = Route;
-Navigation.BarConfig = BarConfig;
 
 function renderScene(route, navigator) {
-  routeChecker(route);
+  routeChecker(route)
+
+  if (router === null) {
+    router = new Router(navigator);
+  }
 
   return (
-    <PassNavigator navigator={navigator}>
-      <route.Component {...route.props} navigator={navigator} />
-    </PassNavigator>
+    <PassRouter router={router}>
+      <route.Component {...route.props} />
+    </PassRouter>
   );
 }
 
 function configureScene(route) {
-  routeChecker(route);
-  const config = route.Component.config || {};
-  const scene = config.scene || Navigator.SceneConfigs.FloatFromRight;
-
-  return scene;
+  return route.scene;
 }
 
 function renderNavigationBar() {
@@ -55,17 +54,17 @@ function renderNavigationBar() {
 
 
 Navigation.propTypes = {
-  initialRoute: PropTypes.instanceOf(Route)
+  initialRoute: PropTypes.instanceOf(Route).isRequired
 };
 
 
 /**
- * 为了方便传递navigator到后代组件
+ * 为了方便传递router到后代组件
  */
-class PassNavigator extends Component {
+class PassRouter extends Component {
   getChildContext() {
     return {
-      navigator: this.props.navigator
+      router: this.props.router
     };
   }
 
@@ -74,15 +73,16 @@ class PassNavigator extends Component {
   }
 }
 
-PassNavigator.childContextTypes = {
-  navigator: PropTypes.object
+PassRouter.childContextTypes = {
+  router: PropTypes.object
 };
 
 function routeChecker(route) {
   if (!(route instanceof Route)) {
-    throw new Error('route不是Route实例');
+    throw new TypeError('route不是Route实例');
   }
 }
+
 
 const styles = StyleSheet.create({
   navBar: {

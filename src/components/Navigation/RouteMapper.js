@@ -1,48 +1,75 @@
-/**
- * DefaultBar的默认routeMapper，可自定义
- *
- * route
- *   * title
- *   * Component
- *     * navBar<BarConfig>
- */
-const BarConfig = require('./BarConfig');
-const defaultNavBar = new BarConfig();
 
-function getNavBar(route) {
-  return route.Component.navBar || defaultNavBar;
-}
-
-const mapper = {
-
-  LeftButton: function(route, navigator, index, navState) {
-    const navBar = getNavBar(route);
-    if (navBar.hide) {
+const defaultMapper = {
+  LeftButton: function (route, navigator, index, navState) {
+    if (index === 0) {
       return null;
     }
 
-    return navBar.LeftButton(route, navigator, index, navState);
+    return (
+      <TouchableOpacity
+        onPress={() => navigator.pop()}
+        style={styles.navBarLeftButton}>
+        <Text style={[styles.navBarText, styles.navBarButtonText]}>
+          返回
+        </Text>
+      </TouchableOpacity>
+    );
   },
 
-  RightButton: function(route, navigator, index, navState) {
-    const navBar = getNavBar(route);
-    if (navBar.hide) {
+  RightButton: function (route, navigator, index, navState) {
+    if (index <= 1) {
       return null;
     }
 
-    return navBar.RightButton(route, navigator, index, navState);
+    return (
+      <TouchableOpacity
+        onPress={() => navigator.popToTop()}
+        style={styles.navBarRightButton}>
+        <Text style={[styles.navBarText, styles.navBarButtonText]}>
+          首页
+        </Text>
+      </TouchableOpacity>
+    );
   },
 
-  Title: function(route, navigator, index, navState) {
-    const navBar = getNavBar(route);
-    if (navBar.hide) {
-      return null;
-    }
-
-    return navBar.Title(route, navigator, index, navState);
+  Title: function (route, navigator, index, navState) {
+    return (
+      <Text style={[styles.navBarText, styles.navBarTitleText]}>
+        {route.title || ''}
+      </Text>
+    );
   }
 };
 
 
+function mapped(route, name) {
+  const navBar = route.navBar || {};
 
-module.exports = mapper;
+  return navBar[name] || defaultMapper[name];
+}
+
+function render(name, route, navigator, index, navState) {
+  if (route.navBar === false) {
+    return null;
+  }
+
+  const redner = mapped(route, name);
+
+  return redner(route, navigator, index, navState);
+}
+
+module.exports = {
+
+  LeftButton: function(route, navigator, index, navState) {
+    return render('LeftButton', route, navigator, index, navState);
+  },
+
+  RightButton: function(route, navigator, index, navState) {
+    return render('RightButton', route, navigator, index, navState);
+  },
+
+  Title: function(route, navigator, index, navState) {
+    return render('Title', route, navigator, index, navState);
+  }
+};
+

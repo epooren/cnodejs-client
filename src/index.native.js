@@ -5,12 +5,15 @@ const {
 } = React;
 const {Provider} = require('react-redux');
 const Navigation = require('./components/Navigation');
-const {Route} = Navigation;
+const {Route} = require('./configs/Router');
 const Index = require('./views/Index');
 const store = require('./store');
 
 
-const initialRoute = new Route(Index, 'CnodejsClient');
+const initialRoute = new Route({
+  Component: Index,
+  title: 'CnodejsClient'
+});
 
 class CnodejsClient extends Component {
   render() {
