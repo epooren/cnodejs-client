@@ -50,4 +50,4 @@ function create(tab, title, content) {
     .catch((err) => notify.error(err.message));
 }
 
-module.exports = {get, create};
+module.exports = {get, create, set};

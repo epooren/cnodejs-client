@@ -8,25 +8,23 @@ const {connect} = require('react-redux');
 const TopicList = require('../../components/TopicList');
 
 
-class TopicsReply extends Component {
+function TopicsReply(props) {
+  const {replyTopics, username} = props;
+  const topics = replyTopics[username];
 
-
-  // methods
-  render() {
-    const {topicsReply, username} = this.props;
-    const topics = topicsReply[username];
-
-    return (<TopicList topics={topics} />);
-  }
-
-  componentDidMount() {
-    // TODO
-  }
+  return (
+    <View style={{
+      marginTop: 64
+    }}>
+      <TopicList topics={topics} />
+    </View>
+  );
 }
+
 
 TopicsReply.propTypes = {
   username: PropTypes.string.isRequired,
-  topicsReply: PropTypes.object.isRequired
+  replyTopics: PropTypes.object.isRequired
 };
 
 
@@ -34,7 +32,7 @@ function mapStateToProps(state) {
   state = state.toJS();
 
   return {
-    topicsReply: state.topicsReply
+    replyTopics: state.replyTopics
   };
 }
 

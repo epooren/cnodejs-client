@@ -28,4 +28,4 @@ function get(username) {
     .catch((err) => notify.error(err.message));
 }
 
-module.exports = {get};
+module.exports = {get, set};

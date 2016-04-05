@@ -1,32 +1,27 @@
 const React = require('react-native');
 const {
-  Component,
   View,
   PropTypes
 } = React;
 const {connect} = require('react-redux');
 const TopicList = require('../../components/TopicList');
 
+function TopicsPost(props) {
+  const {userTopics, username} = props;
+  const topics = userTopics[username];
 
-class TopicsPost extends Component {
-
-
-  // methods
-  render() {
-    const {topicsPost, username} = this.props;
-    const topics = topicsPost[username];
-
-    return (<TopicList topics={topics} />);
-  }
-
-  componentDidMount() {
-    // TODO
-  }
+  return (
+    <View style={{
+      marginTop: 64
+    }}>
+      <TopicList topics={topics} />
+    </View>
+  );
 }
 
 TopicsPost.propTypes = {
   username: PropTypes.string.isRequired,
-  topicsPost: PropTypes.object.isRequired
+  userTopics: PropTypes.object.isRequired
 };
 
 
@@ -34,7 +29,7 @@ function mapStateToProps(state) {
   state = state.toJS();
 
   return {
-    topicsPost: state.topicsPost
+    userTopics: state.userTopics
   };
 }
 

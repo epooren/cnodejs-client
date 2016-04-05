@@ -32,7 +32,7 @@ module.exports = fromJS({
      */
   },
 
-  replyTopic: {
+  replyTopics: {
     /**
      * [username]
      */
