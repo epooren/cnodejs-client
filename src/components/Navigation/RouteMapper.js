@@ -1,3 +1,10 @@
+const React = require('react-native');
+const {
+  TouchableOpacity,
+  Text,
+  StyleSheet
+} = React;
+
 
 const defaultMapper = {
   LeftButton: function (route, navigator, index, navState) {
@@ -57,6 +64,29 @@ function render(name, route, navigator, index, navState) {
 
   return redner(route, navigator, index, navState);
 }
+
+
+const styles = StyleSheet.create({
+  navBarText: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
+  navBarTitleText: {
+    color: '#fff',
+    fontWeight: '500',
+    marginVertical: 9,
+  },
+  navBarLeftButton: {
+    paddingLeft: 10,
+  },
+  navBarRightButton: {
+    paddingRight: 10,
+  },
+  navBarButtonText: {
+    color: '#fff',
+  }
+});
+
 
 module.exports = {
 

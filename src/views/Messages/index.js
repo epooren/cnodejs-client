@@ -6,21 +6,18 @@ const {
 } = React;
 const {connect} = require('react-redux');
 const Cell = require('../../components/Cell');
-const MessagesReaded = require('../MessagesReaded');
-const MessagesUnread = require('../MessagesUnread');
-const {Route} = require('../../components/Navigation');
 
-const routeUnread = new Route(MessagesUnread, '未读消息');
-const routeReaded = new Route(MessagesReaded, '未读消息');
 
 class Messages extends Component {
 
   // methods
   render() {
+    const {router} = this.context;
+
     return (
       <View>
-        <Cell content="未读消息" route={routeUnread} />
-        <Cell content="已读消息" route={routeUnread} />
+        <Cell content="未读消息" toToute={() => router.toMessagesUnread} />
+        <Cell content="已读消息" toToute={() => router.toMessagesReaded} />
       </View>
     );
   }
@@ -29,6 +26,10 @@ class Messages extends Component {
     // TODO
   }
 }
+
+Messages.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 Messages.propTypes = {
   token: PropTypes.string.isRequired

@@ -4,31 +4,26 @@ const {
   View,
   Text,
   TouchableOpacity,
-  Navigator,
   PropTypes
 } = React;
 const {Route} = require('../Navigation');
 
 function Cell(props, context) {
-  const {content, route} = props;
-  const {navigator} = context;
+  const {content, toRoute} = props;
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigator.push(route)}>
+      <TouchableOpacity onPress={toRoute}>
         <Text>{content}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-Cell.contextTypes = {
-  navigator: PropTypes.instanceOf(Navigator).isRequired
-};
 
 Cell.propsTypes = {
   content: PropTypes.string.isRequired,
-  route: PropTypes.instanceOf(Route).isRequired
+  toRoute: PropTypes.func.isRequired
 };
 
 module.exports = Cell;

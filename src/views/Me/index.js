@@ -8,25 +8,13 @@ const {
 const {connect} = require('react-redux');
 const Cell = require('../../components/Cell');
 const Button = require('../../components/Button');
-const {Route} = require('../../components/Navigation');
-const TopicsPost = require('../TopicsPost');
-const TopicsReply = require('../TopicsReply');
 
 class Me extends Component {
-  constructor(props) {
-    super(props);
-
-    this.routePost = new Route(TopicsPost, '我发布的专题', {
-      username: props.username
-    });
-    this.routeReply = new Route(TopicsReply, '我参与的专题', {
-      username: props.username
-    });
-  }
 
   // methods
   render() {
     const {user} = this.props;
+    const {router} = this.context;
 
     return (
       <View>
@@ -35,8 +23,8 @@ class Me extends Component {
           <Text>join-time</Text>
         </View>
 
-        <Cell content="发布的主题" route={this.routePost} />
-        <Cell content="参与的主题" route={this.routeReply} />
+        <Cell content="发布的主题" toRroute={() => router.toTopicsPost()} />
+        <Cell content="参与的主题" toRoute={() => router.toTopicsReply()} />
 
         <Button handleClick={this.logout}>Logout</Button>
       </View>
@@ -51,6 +39,10 @@ class Me extends Component {
     // TODO
   }
 }
+
+Me.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 Me.propTypes = {
   username: PropTypes.string,

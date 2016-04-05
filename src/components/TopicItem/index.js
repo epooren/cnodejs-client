@@ -4,19 +4,16 @@ const {
   View,
   Text,
   TouchableOpacity,
-  PropTypes,
-  Navigator
+  PropTypes
 } = React;
-const Topic = require('../../views/Topic');
-const {Route} = require('../Navigation');
 
 function TopicItem(props, context) {
   const {topic} = props;
-  const {navigator} = context;
+  const {router} = context;
 
   return (
     <View>
-      <TouchableOpacity onPress={navToTopic.bind(navigator, topic)}>
+      <TouchableOpacity onPress={toTopic.bind(router, topic)}>
         <View>
           <View><Text>{topic.title}</Text></View>
           <View>
@@ -30,17 +27,13 @@ function TopicItem(props, context) {
   );
 }
 
-function navToTopic(topic) {
-  const route = new Route(Topic, topic.title, {
-    topic: topic
-  });
-
-  this.push(route);
+function toTopic(topic) {
+  this.toTopic({topic: topic}, topic.title);
 }
 
 TopicItem.contextTypes = {
-  navigator: PropTypes.instanceOf(Navigator)
-}
+  router: PropTypes.object.isRequired
+};
 
 TopicItem.propTypes = {
   topic: PropTypes.object.isRequired

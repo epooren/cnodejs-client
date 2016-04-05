@@ -7,25 +7,10 @@ const {
 } = React;
 const {connect} = require('react-redux');
 const Cell = require('../../components/Cell');
-const TopicsPost = require('../TopicsPost');
-const TopicsReply = require('../TopicsReply');
-const {Route} = require('../../components/Navigation');
 const actionUser = require('../../actions/user');
 
 
 class User extends Component {
-  constructor(props) {
-    super(props);
-
-    const {username} = props;
-
-    this.routePost = new Route(TopicsPost, `${username}发布的专题`, {
-      username: username
-    });
-    this.routeReply = new Route(TopicsReply, `${username}参与的专题`, {
-      username: username
-    });
-  }
 
   // methods
   render() {
@@ -45,8 +30,8 @@ class User extends Component {
           <Text>注册时间：{user.create_at}</Text>
         </View>
 
-        <Cell content="发布的专题" route={this.routePost} />
-        <Cell content="参与的专题" route={this.routeReply} />
+        <Cell content="发布的专题" toRoute={this.toTopicsPost.bind(this)} />
+        <Cell content="参与的专题" toRoute={this.toTopicsReply.bind(this)} />
       </View>
     );
   }
@@ -56,7 +41,25 @@ class User extends Component {
 
     actionUser.get(username);
   }
+
+  toTopicsPost() {
+    const {username} = this.props;
+    const {router} = this.context;
+
+    router.toTopicsPost({username}, `${username}发布的专题`);
+  }
+
+  toTopicsReply() {
+    const {username} = this.props;
+    const {router} = this.context;
+
+    router.toTopicsReply({username}, `${username}参与的专题`);
+  }
 }
+
+User.contextProps = {
+  router: PropTypes.object.isRequired
+};
 
 User.propTypes = {
   username: PropTypes.string.isRequired,

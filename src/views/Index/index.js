@@ -9,15 +9,11 @@ const Topics = require('../Topics');
 const Messages = require('../Messages');
 const Me = require('../Me');
 const actionTab = require('../../actions/tab');
-const Login = require('../Login');
-const {Route} = require('../../components/Navigation');
-
-const routeLogin = new Route(Login, 'Login');
 
 
 function Index(props, context) {
   const {tab, master} = props;
-  const {navigator} = context;
+  const {router} = context;
 
   return (
     <TabBarIOS>
@@ -25,21 +21,21 @@ function Index(props, context) {
         systemIcon="featured"
         title="Topics"
         selected={tab === 'topics'}
-        onPress={select.bind(null, 'topics', master, navigator)}>
+        onPress={select.bind(null, 'topics', master, router)}>
         <Topics />
       </TabBarIOS.Item>
       <TabBarIOS.Item
         systemIcon="contacts"
         title="Messages"
         selected={tab === 'messages'}
-        onPress={select.bind(null, 'messages', master, navigator)}>
+        onPress={select.bind(null, 'messages', master, router)}>
         <Messages />
       </TabBarIOS.Item>
       <TabBarIOS.Item
         systemIcon="bookmarks"
         title="Me"
         selected={tab === 'me'}
-        onPress={select.bind(null, 'me', master, navigator)}>
+        onPress={select.bind(null, 'me', master, router)}>
         <Me />
       </TabBarIOS.Item>
     </TabBarIOS>
@@ -52,16 +48,14 @@ Index.propTypes = {
 };
 
 Index.contextTypes = {
-  navigator: PropTypes.instanceOf(Navigator).isRequired
+  router: PropTypes.object.isRequired
 };
 
 
 
-function select(tab, master, navigator) {
-  // TODO
-  // 必须登录才能选择
+function select(tab, master, router) {
   if (!master.username) {
-    navigator.push(routeLogin);
+    router.toLogin();
     return;
   }
 

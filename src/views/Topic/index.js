@@ -4,15 +4,12 @@ const {
   ScrollView,
   Text,
   TouchableOpacity,
-  PropTypes,
-  Navigator
+  PropTypes
 } = React;
-const User = require('../User');
-const {Route} = require('../../components/Navigation');
 
 function Topic(props, context) {
   const {topic} = props;
-  const {navigator} = context;
+  const {router} = context;
   const username= topic.author.loginname;
 
   return (
@@ -23,7 +20,7 @@ function Topic(props, context) {
       <View><Text>{topic.title}</Text></View>
 
       <View>
-        <TouchableOpacity onPress={navToUser.bind(navigator, username)}>
+        <TouchableOpacity onPress={toUser.bind(router, username)}>
           <Text style={{
             color: 'blue',
             padding: 8
@@ -38,17 +35,13 @@ function Topic(props, context) {
   );
 }
 
-function navToUser(username) {
-  const route = new Route(User, username, {
-    username: username
-  });
-
-  this.push(route);
+function toUser(username) {
+  this.toUser({username: username}, username);
 }
 
 
 Topic.contextTypes = {
-  navigator: PropTypes.instanceOf(Navigator)
+  router: PropTypes.object.isRequired
 };
 
 Topic.propTypes = {
