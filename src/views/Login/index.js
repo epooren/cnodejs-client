@@ -19,71 +19,80 @@ class Login extends Component {
 
   // methods
   render() {
-    return Render(this.props, this.context);
+    let {token} = this.props;
+    const {router} = this.context;
+
+    token || (token = '');
+
+    return (
+      <View style={{
+        flex: 1,
+        marginTop: 94,
+        marginLeft: 10,
+        marginRight: 10
+      }}>
+        <TextInput
+          style={{
+            borderWidth: 1,
+            borderColor: 'gray',
+            height: 40
+          }}
+          value={token}
+          onChangeText={this.inputToken}
+          onSubmitEditing={this.verify.bind(this)}
+          placeholder="请输入token" />
+        <Button handleClick={this.verify.bind(this)}>Login</Button>
+      </View>
+    );
+  }
+
+  componentDidMount() {
+    const {name} = this.props;
+
+    if (name) {
+      // TODO
+    }
+  }
+
+  verify() {
+    const {token} = this.props;
+    const {router} = this.context;
+
+    actionUser
+      .login(token)
+      .then((value) => {
+        // 如果失败，value = undefined
+        if (value) {
+          router.back();
+        }
+      });
+  }
+
+  inputToken(token) {
+    actionUser.setMaster(token);
   }
 }
 
 
-function Render(props, context) {
-  let {token} = props;
-  const {router} = context;
-
-  token || (token = '');
-
-  return (
-    <View style={{
-      flex: 1,
-      marginTop: 94,
-      marginLeft: 10,
-      marginRight: 10
-    }}>
-      <TextInput
-        style={{
-          borderWidth: 1,
-          borderColor: 'gray',
-          height: 40
-        }}
-        value={token}
-        onChangeText={inputToken}
-        onSubmitEditing={verify.bind(router, token)}
-        placeholder="请输入token" />
-      <Button handleClick={verify.bind(router, token)}>Login</Button>
-    </View>
-  );
-}
 
 Login.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
 Login.propTypes = {
-  token: PropTypes.string
+  token: PropTypes.string,
+  name: PropTypes.string
 };
 
-function verify(token) {
-  actionUser
-    .login(token)
-    .then((value) => {
-      // 如果失败，value = undefined
-      if (value) {
-        this.back();
-      }
-    });
-}
-
-function inputToken(token) {
-  actionUser.setMaster(token);
-}
 
 
 function mapStateToProps(state) {
   state = state.toJS();
 
   return {
+    name: state.master.username,
     token: state.master.accesstoken
   };
 }
-
-
 
 module.exports = connect(mapStateToProps)(Login);
