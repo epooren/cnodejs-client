@@ -21,7 +21,7 @@ function set(user) {
   replyTopics.set(user.loginname, user.recent_replies);
 }
 
-function setMaster(name, token) {
+function setMaster(token, name) {
   const action = {
     type: SET_MASTER,
     name: name,
@@ -51,7 +51,7 @@ function login(accesstoken) {
     .verify(accesstoken)
     .then((response) => {
       notify.hide();
-      setMaster(response.loginname, accesstoken);
+      setMaster(accesstoken, response.loginname);
     })
     .catch((err) => notify.error(err.message));
 }
@@ -63,4 +63,4 @@ function logout() {
 
 
 
-module.exports = {login, logout, get};
+module.exports = {login, logout, get, setMaster};

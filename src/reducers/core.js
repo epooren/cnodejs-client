@@ -6,12 +6,10 @@ function notify(state, action) {
 }
 
 
-
-
 function setMaster(state, action) {
   return state.merge({
-    name: action.name,
-    token: action.token
+    username: action.name,
+    accesstoken: action.token
   });
 }
 

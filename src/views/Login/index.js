@@ -13,6 +13,7 @@ const {
 } = React;
 const {connect} = require('react-redux');
 const Button = require('../../components/Button');
+const actionUser = require('../../actions/user');
 
 class Login extends Component {
 
@@ -58,7 +59,7 @@ function verify(token) {
 }
 
 function inputToken(token) {
-  // TODO
+  actionUser.setMaster(token);
 }
 
 
