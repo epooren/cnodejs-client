@@ -5,6 +5,7 @@
 
 const React = require('react-native');
 const {
+  Component,
   View,
   TextInput,
   Text,
@@ -13,8 +14,16 @@ const {
 const {connect} = require('react-redux');
 const Button = require('../../components/Button');
 
+class Login extends Component {
 
-function Login(props) {
+  // methods
+  render() {
+    return Render(this.props);
+  }
+}
+
+
+function Render(props) {
   let {token} = props;
 
   token || (token = '');
@@ -25,16 +34,20 @@ function Login(props) {
       marginTop: 64
     }}>
       <TextInput
+        style={{
+          borderWidth: 1,
+          borderColor: 'gray',
+          height: 40
+        }}
         value={token}
         onChangeText={inputToken}
         onSubmitEditing={verify.bind(null, token)}
         placeholder="请输入token" />
-      <Button handleClick={verify.bind(null, token)}>
-        Login
-      </Button>
+      <Button handleClick={verify.bind(null, token)}>Login</Button>
     </View>
   );
 }
+
 
 Login.propTypes = {
   token: PropTypes.string
