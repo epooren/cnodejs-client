@@ -15,7 +15,7 @@ module.exports = function getStore (initialState) {
     const store = createStore(reducer, initialState, enhancer);
 
     if (module.hot) {
-        module.hot.accept('../reducers', () => {
+        module.hot.accept(() => {
             reducer = require('../reducers');
             store.replaceReducer(reducer);
         });
