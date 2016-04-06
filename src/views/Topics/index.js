@@ -32,7 +32,7 @@ class Topics extends Component {
           selectedIndex={mapTabs.indexOf(selectedTab)}
           values={mapTabs}
           onValueChange={this.select.bind(this)} />
-        {isEmpty || <TopicList topics={topics.data} />}
+        {isEmpty || <TopicList topics={topics.data} onEndReached={this.loadMore.bind(this)} />}
       </View>
     );
   }
@@ -52,6 +52,19 @@ class Topics extends Component {
     if (topics) return;
 
     actionTopics.get(tab);
+  }
+
+  loadMore() {
+    let {topics} = this.props;
+    const {selectedTab} = topics;
+    topics = topics[selectedTab];
+    const {page, status} = topics;
+
+    if (status === 'pending' || status === 'end') {
+      return;
+    }
+
+    actionTopics.get(selectedTab, page + 1);
   }
 }
 

@@ -11,7 +11,7 @@ const dataSource = new ListView.DataSource({
 });
 
 function TopicList(props) {
-  const {topics} = props;
+  const {topics, onEndReached} = props;
   const rows = dataSource.cloneWithRows(topics);
 
   return (
@@ -20,13 +20,16 @@ function TopicList(props) {
         flex: 1
       }}
       dataSource={rows}
-      renderRow={renderRow} />
+      renderRow={renderRow}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={64} />
   );
 }
 
 
 TopicList.propTypes = {
-  topics: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired,
+  onEndReached: PropTypes.func
 };
 
 function renderRow(topic) {
