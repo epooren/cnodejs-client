@@ -22,10 +22,8 @@ function Login(props) {
   return (
     <View style={{
       flex: 1,
-      backgroundColor: 'red',
       marginTop: 64
     }}>
-      <Text>Login</Text>
       <TextInput
         value={token}
         onChangeText={inputToken}
