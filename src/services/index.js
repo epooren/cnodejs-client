@@ -32,6 +32,7 @@ function get(url) {
 
 function post(url, body) {
   let http = fetch(url, {
+    method: 'post',
     mode: 'cors',
     body: body
   });

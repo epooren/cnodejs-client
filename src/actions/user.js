@@ -52,6 +52,8 @@ function login(accesstoken) {
     .then((response) => {
       notify.hide();
       setMaster(accesstoken, response.loginname);
+
+      return response;
     })
     .catch((err) => notify.error(err.message));
 }

@@ -19,20 +19,23 @@ class Login extends Component {
 
   // methods
   render() {
-    return Render(this.props);
+    return Render(this.props, this.context);
   }
 }
 
 
-function Render(props) {
+function Render(props, context) {
   let {token} = props;
+  const {router} = context;
 
   token || (token = '');
 
   return (
     <View style={{
       flex: 1,
-      marginTop: 64
+      marginTop: 94,
+      marginLeft: 10,
+      marginRight: 10
     }}>
       <TextInput
         style={{
@@ -42,20 +45,30 @@ function Render(props) {
         }}
         value={token}
         onChangeText={inputToken}
-        onSubmitEditing={verify.bind(null, token)}
+        onSubmitEditing={verify.bind(router, token)}
         placeholder="请输入token" />
-      <Button handleClick={verify.bind(null, token)}>Login</Button>
+      <Button handleClick={verify.bind(router, token)}>Login</Button>
     </View>
   );
 }
 
+Login.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 Login.propTypes = {
   token: PropTypes.string
 };
 
 function verify(token) {
-  // TODO
+  actionUser
+    .login(token)
+    .then((value) => {
+      // 如果失败，value = undefined
+      if (value) {
+        this.back();
+      }
+    });
 }
 
 function inputToken(token) {

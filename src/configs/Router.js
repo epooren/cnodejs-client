@@ -44,6 +44,10 @@ class Router {
     this.navigator = navigator;
   }
 
+  back() {
+    this.navigator.pop();
+  }
+
   // methods
   toIndex(props) {
     const route = new Route({
