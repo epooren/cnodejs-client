@@ -1,0 +1,26 @@
+/**
+ * 扩展：
+ *   * standard
+ *   * standard-react
+ *
+ * 规则文档：
+ *   * http://eslint.org/docs/rules/
+ *   * https://github.com/yannickcr/eslint-plugin-react
+ */
+
+{
+  "extends": ["standard", "standard-react"],
+
+  "globals": {
+    "alert": false
+  },
+
+  "rules": {
+    "semi": [2, "always"],  // 必须使用分号，且正确使用
+    "no-multiple-empty-lines": 0,  // 不限制连续的空行数量
+    "space-before-function-paren": [2, {  // 匿名函数需要空格，命名的不需要
+      "anonymous": "always",
+      "named": "never"
+    }],
+  }
+}
