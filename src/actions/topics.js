@@ -1,4 +1,4 @@
-const {dispatch, getState} = require('../store');
+const {dispatch} = require('../store');
 const {SET_TOPICS, SET_TOPIC, SELECT_TOPICS_TAB} = require('../constants');
 const services = require('../services');
 const notify = require('./notify');
@@ -48,7 +48,7 @@ function get(tab, page = 1, limit = 10) {
     })
     .catch((err) => {
       notify.error(err.message);
-      set(tab, 'fail')
+      set(tab, 'fail');
     });
 }
 

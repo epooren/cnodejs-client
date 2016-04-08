@@ -1,42 +1,48 @@
-const {dispatch} = require('../store');
-const {NOTIFY} = require('../constants');
+const {
+  dispatch
+} = require('../store');
+const {
+  NOTIFY
+} = require('../constants');
 
 
 function notify(show, type, content) {
-    const action = {
-        type: NOTIFY,
-        notification: {
-            show: show,
-            type: type,
-            content: content
-        }
-    };
+  const action = {
+    type: NOTIFY,
+    notification: {
+      show: show,
+      type: type,
+      content: content
+    }
+  };
 
-    dispatch(action);
+  dispatch(action);
 }
 
 function loading(content = '数据加载中') {
-    notify(true, 'loading', content);
+  notify(true, 'loading', content);
 }
 
 function info(content) {
-    notify(true, 'info', content);
+  notify(true, 'info', content);
 }
 
 function success(content) {
-    notify(true, 'success', content);
+  notify(true, 'success', content);
 }
 
 function error(content) {
-    notify(true, 'error', content);
+  notify(true, 'error', content);
 }
 
 function warn(content) {
-    notify(true, 'warn', content);
+  notify(true, 'warn', content);
 }
 
 function hide() {
-    notify(false);
+  notify(false);
 }
 
-module.exports = {info, success, error, warn, hide, loading};
+module.exports = {
+  info, success, error, warn, hide, loading
+};

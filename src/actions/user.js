@@ -1,7 +1,7 @@
 const {dispatch} = require('../store');
 const {
   SET_MASTER,
-  SET_USER,
+  SET_USER
 } = require('../constants');
 const services = require('../services');
 const notify = require('./notify');

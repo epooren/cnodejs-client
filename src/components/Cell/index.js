@@ -1,12 +1,10 @@
 const React = require('react-native');
 const {
-  Component,
   View,
   Text,
   TouchableOpacity,
   PropTypes
 } = React;
-const {Route} = require('../Navigation');
 
 function Cell(props, context) {
   const {content, toRoute} = props;
@@ -21,7 +19,7 @@ function Cell(props, context) {
 }
 
 
-Cell.propsTypes = {
+Cell.propTypes = {
   content: PropTypes.string.isRequired,
   toRoute: PropTypes.func.isRequired
 };

@@ -1,4 +1,4 @@
-const {dispatch} = require('../store');
+const {dispatch, getState} = require('../store');
 const notify = require('./notify');
 const {SET_USER_TOPICS} = require('../constants');
 const services = require('../services');
@@ -43,7 +43,7 @@ function create(tab, title, content) {
   return services
     .createTopic(token, tab, title, content)
     .then((response) => {
-      loading.hide();
+      notify.hide();
 
       // TODO 插入userTopics
     })

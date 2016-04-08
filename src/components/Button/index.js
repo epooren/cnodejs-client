@@ -16,7 +16,11 @@ function Button(props) {
 }
 
 Button.propTypes = {
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]).isRequired
 };
 
 module.exports = Button;

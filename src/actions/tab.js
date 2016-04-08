@@ -1,5 +1,4 @@
 const {dispatch} = require('../store');
-const notify = require('./notify');
 const {SELECT_TAB} = require('../constants');
 
 function set(tab) {
