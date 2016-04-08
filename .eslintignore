@@ -1,0 +1,5 @@
+# 从源码copy过来的
+src/components/Navigation/buildStyleInterpolator.js
+src/components/Navigation/DefaultBar.js
+src/components/Navigation/BarStylesIOS.js
+src/components/Navigation/BarStylesAndroid.js

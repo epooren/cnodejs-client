@@ -10,23 +10,23 @@ const RouteMapper = require('./RouteMapper');
 const Router = require('../../configs/Router');
 const {Route} = Router;
 
-const router = null;
+let router = null;
 
 function Navigation(props) {
   const {initialRoute} = props;
 
   return (
     <Navigator
-     initialRoute={initialRoute}
-     renderScene={renderScene}
-     configureScene={configureScene}
-     navigationBar={renderNavigationBar()} />
+      initialRoute={initialRoute}
+      renderScene={renderScene}
+      configureScene={configureScene}
+      navigationBar={renderNavigationBar()} />
   );
 }
 
 
 function renderScene(route, navigator) {
-  routeChecker(route)
+  routeChecker(route);
 
   if (router === null) {
     router = new Router(navigator);
@@ -69,13 +69,20 @@ class PassRouter extends Component {
   }
 
   render() {
-    return this.props.children
+    return this.props.children;
   }
 }
 
 PassRouter.childContextTypes = {
   router: PropTypes.object
 };
+
+PassRouter.propTypes = {
+  children: PropTypes.element.isRequired,
+  router: PropTypes.object.isRequired
+};
+
+
 
 function routeChecker(route) {
   if (!(route instanceof Route)) {

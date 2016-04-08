@@ -1,7 +1,6 @@
 const React = require('react-native');
 const {
   ListView,
-  View,
   PropTypes
 } = React;
 const Item = require('../TopicItem');

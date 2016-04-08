@@ -1,8 +1,6 @@
 const React = require('react-native');
 const {
-  TouchableOpacity,
-  Text,
-  StyleSheet
+  TouchableOpacity, Text, StyleSheet
 } = React;
 
 
@@ -69,37 +67,36 @@ function render(name, route, navigator, index, navState) {
 const styles = StyleSheet.create({
   navBarText: {
     fontSize: 16,
-    marginVertical: 10,
+    marginVertical: 10
   },
   navBarTitleText: {
     color: '#fff',
     fontWeight: '500',
-    marginVertical: 9,
+    marginVertical: 9
   },
   navBarLeftButton: {
-    paddingLeft: 10,
+    paddingLeft: 10
   },
   navBarRightButton: {
-    paddingRight: 10,
+    paddingRight: 10
   },
   navBarButtonText: {
-    color: '#fff',
+    color: '#fff'
   }
 });
 
 
 module.exports = {
 
-  LeftButton: function(route, navigator, index, navState) {
+  LeftButton: function (route, navigator, index, navState) {
     return render('LeftButton', route, navigator, index, navState);
   },
 
-  RightButton: function(route, navigator, index, navState) {
+  RightButton: function (route, navigator, index, navState) {
     return render('RightButton', route, navigator, index, navState);
   },
 
-  Title: function(route, navigator, index, navState) {
+  Title: function (route, navigator, index, navState) {
     return render('Title', route, navigator, index, navState);
   }
 };
-
