@@ -60,7 +60,7 @@ function resolveUrl(api, path = {}, query = {}) {
   let key, result;
 
   for (key in path) {
-      api = api.replace(`:${key}`, path[key]);
+    api = api.replace(`:${key}`, path[key]);
   }
 
   query = queryString(query);
@@ -75,7 +75,8 @@ function serializeBody(json) {
 }
 
 function queryString(json) {
-  let result = '', key;
+  let result = '';
+  let key;
 
   for (key in json) {
     if (json.hasOwnProperty(key) && typeof json[key] !== 'undefined') {

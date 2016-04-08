@@ -2,7 +2,8 @@
   "extends": ["standard", "standard-react"],
 
   "globals": {
-    "alert": false
+    "alert": false,
+    "fetch": false
   },
 
   "rules": {

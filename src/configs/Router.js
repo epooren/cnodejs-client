@@ -19,13 +19,14 @@ const User = require('../views/User');
 
 
 class Route {
-  constructor({
-        Component,
-        props = {},
-        title = '',
-        scene = SceneConfigs.FloatFromRight,
-        navBar = {}
-      } = options) {
+  constructor(options = {}) {
+    const {
+      Component,
+      props = {},
+      title = '',
+      scene = SceneConfigs.FloatFromRight,
+      navBar = {}
+    } = options;
 
     this.Component = Component;
     this.props = props;

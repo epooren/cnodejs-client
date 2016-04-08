@@ -26,7 +26,7 @@ function reducer(state = fromJS({}), action) {
     case constants.SET_FAV_TOPICS:
     case constants.ADD_FAV_TOPIC:
     case constants.REMOVE_FAV_TOPIC:
-      return state.update('favTopics', (state) => core.favTopics(state, action))
+      return state.update('favTopics', (state) => core.favTopics(state, action));
 
     case constants.SET_TOPIC:
       return state.update('topic', (state) => core.setTopic(state, action));

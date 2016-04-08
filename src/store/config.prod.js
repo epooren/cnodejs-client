@@ -1,11 +1,10 @@
-const {createStore, applyMiddleware, compose} = require('redux');
-const reducer = require('../reducers');
+// const {createStore, applyMiddleware, compose} = require('redux');
+// const reducer = require('../reducers');
 
-const enhancer = compose(applyMiddleware(saveState(stateKey)));
+// // const enhancer = compose(applyMiddleware(saveState(stateKey)));
 
+// module.exports = function getStore (initialState) {
+//   const store = createStore(reducer, initialState);
 
-module.exports = function getStore (initialState) {
-    const store = createStore(reducer, initialState, enhancer);
-
-    return store;
-};
+//   return store;
+// };

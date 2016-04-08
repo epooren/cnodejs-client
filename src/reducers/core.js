@@ -70,7 +70,7 @@ function setReplyTopics(state, action) {
 
 
 function favTopics(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case constants.SET_FAV_TOPICS:
       return setFavTopics(state, action);
     case constants.ADD_FAV_TOPIC:
@@ -87,7 +87,7 @@ function setFavTopics(state, action) {
 function addFavTopics(state, action) {
   return state.update(action.username, (topics) => {
     return topics.push(fromJS(action.topic));
-  })
+  });
 }
 
 function removeFavTopics(state, action) {
@@ -104,7 +104,7 @@ function removeFavTopics(state, action) {
 function setTopic(state, action) {
   const topic = action.topic;
 
-  return state.set(topic.id, fronJS(topic));
+  return state.set(topic.id, fromJS(topic));
 }
 
 
@@ -116,7 +116,7 @@ function setUser(state, action) {
 
 
 function readMessages(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case constants.SET_UNREAD_MESSAGES_NUM:
       return state.set('unreadNum', action.num);
     case constants.SET_UNREAD_MESSAGES:
@@ -145,5 +145,6 @@ module.exports = {
   setTopic,
   setUser,
   readMessages,
-  setMessage
+  setMessage,
+  favTopics
 };
