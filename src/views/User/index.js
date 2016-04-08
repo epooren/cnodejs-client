@@ -29,8 +29,8 @@ class User extends Component {
           <Text>注册时间：{user.create_at}</Text>
         </View>
 
-        <Cell content="发布的专题" toRoute={this.toTopicsPost.bind(this)} />
-        <Cell content="参与的专题" toRoute={this.toTopicsReply.bind(this)} />
+        <Cell content='发布的专题' toRoute={this.toTopicsPost.bind(this)} />
+        <Cell content='参与的专题' toRoute={this.toTopicsReply.bind(this)} />
       </View>
     );
   }

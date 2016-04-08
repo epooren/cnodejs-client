@@ -16,8 +16,8 @@ class Messages extends Component {
 
     return (
       <View>
-        <Cell content="未读消息" toToute={() => router.toMessagesUnread} />
-        <Cell content="已读消息" toToute={() => router.toMessagesReaded} />
+        <Cell content='未读消息' toToute={() => router.toMessagesUnread} />
+        <Cell content='已读消息' toToute={() => router.toMessagesReaded} />
       </View>
     );
   }
@@ -44,5 +44,5 @@ function mapStateToProps(state) {
   };
 }
 
-const MessagesContainer = connect(mapStateToProps)(Messages);
-module.exports = MessagesContainer
+
+module.exports = connect(mapStateToProps)(Messages);

@@ -12,7 +12,7 @@ class Message extends Component {
 
   // methods
   render() {
-    const {id, message} = this.props;
+    const {id} = this.props;
 
     return (
       <View>

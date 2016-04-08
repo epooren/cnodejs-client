@@ -2,8 +2,7 @@ const React = require('react-native');
 const {
   Component,
   View,
-  Text,
-  PropTypes
+  Text
 } = React;
 const {connect} = require('react-redux');
 
@@ -31,4 +30,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-module.exports = connect()(MessagesReaded);
+module.exports = connect(mapStateToProps)(MessagesReaded);

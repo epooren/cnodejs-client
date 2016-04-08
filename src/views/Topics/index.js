@@ -20,7 +20,7 @@ class Topics extends Component {
     topics = topics[selectedTab];
 
 
-    const isEmpty = !topics || !topics.data
+    const isEmpty = !topics || !topics.data;
 
     return (
       <View style={{

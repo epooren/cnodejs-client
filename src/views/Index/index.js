@@ -1,8 +1,7 @@
 const React = require('react-native');
 const {
   TabBarIOS,
-  PropTypes,
-  Navigator
+  PropTypes
 } = React;
 const {connect} = require('react-redux');
 const Topics = require('../Topics');
@@ -19,21 +18,21 @@ function Index(props, context) {
     <TabBarIOS>
       <TabBarIOS.Item
 
-        title="Topics"
+        title='Topics'
         selected={tab === 'topics'}
         onPress={select.bind(null, 'topics', master, router)}>
         <Topics />
       </TabBarIOS.Item>
       <TabBarIOS.Item
 
-        title="Messages"
+        title='Messages'
         selected={tab === 'messages'}
         onPress={select.bind(null, 'messages', master, router)}>
         <Messages />
       </TabBarIOS.Item>
       <TabBarIOS.Item
 
-        title="Me"
+        title='Me'
         selected={tab === 'me'}
         onPress={select.bind(null, 'me', master, router)}>
         <Me />

@@ -13,7 +13,7 @@ class Me extends Component {
 
   // methods
   render() {
-    const {user} = this.props;
+    // const {user} = this.props;
     const {router} = this.context;
 
     return (
@@ -23,8 +23,8 @@ class Me extends Component {
           <Text>join-time</Text>
         </View>
 
-        <Cell content="发布的主题" toRroute={() => router.toTopicsPost()} />
-        <Cell content="参与的主题" toRoute={() => router.toTopicsReply()} />
+        <Cell content='发布的主题' toRroute={() => router.toTopicsPost()} />
+        <Cell content='参与的主题' toRoute={() => router.toTopicsReply()} />
 
         <Button handleClick={this.logout}>Logout</Button>
       </View>

@@ -8,7 +8,6 @@ const {
   Component,
   View,
   TextInput,
-  Text,
   PropTypes
 } = React;
 const {connect} = require('react-redux');
@@ -20,7 +19,6 @@ class Login extends Component {
   // methods
   render() {
     let {token} = this.props;
-    const {router} = this.context;
 
     token || (token = '');
 
@@ -40,7 +38,7 @@ class Login extends Component {
           value={token}
           onChangeText={this.inputToken}
           onSubmitEditing={this.verify.bind(this)}
-          placeholder="请输入token" />
+          placeholder='请输入token' />
         <Button handleClick={this.verify.bind(this)}>Login</Button>
       </View>
     );

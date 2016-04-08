@@ -2,8 +2,7 @@ const React = require('react-native');
 const {
   Component,
   View,
-  Text,
-  PropTypes
+  Text
 } = React;
 const {connect} = require('react-redux');
 
@@ -31,5 +30,5 @@ function mapStateToProps(state) {
   return {};
 }
 
-const MessagesUnreadContainer = connect()(MessagesUnread);
+const MessagesUnreadContainer = connect(mapStateToProps)(MessagesUnread);
 module.exports = MessagesUnreadContainer;

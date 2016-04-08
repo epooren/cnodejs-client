@@ -10,7 +10,7 @@ const {
 function Topic(props, context) {
   const {topic} = props;
   const {router} = context;
-  const username= topic.author.loginname;
+  const username = topic.author.loginname;
 
   return (
     <ScrollView style={{
